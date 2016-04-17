@@ -10,55 +10,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Forms</title>
+  <title>Sign in</title>
 
-  <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/css/datepicker3.css" rel="stylesheet">
-  <link href="resources/css/styles.css" rel="stylesheet">
-
-  <!--[if lt IE 9]>
-  <script src="resources/js/html5shiv.min.js"></script>
-  <script src="resources/js/respond.min.js"></script>
-  <![endif]-->
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
+  <!-- Sandstone Bootstrap CSS -->
+  <link rel="stylesheet" href="../resources/css/bootstrap1.min.css">
+  <!-- Bootstrap Datatables -->
+  <link rel="stylesheet" href="../resources/css/dataTables.bootstrap.min.css">
+  <!-- Bootstrap social button library -->
+  <link rel="stylesheet" href="../resources/css/bootstrap-social.css">
+  <!-- Bootstrap select -->
+  <link rel="stylesheet" href="../resources/css/bootstrap-select.css">
+  <!-- Bootstrap file input -->
+  <link rel="stylesheet" href="../resources/css/fileinput.min.css">
+  <!-- Awesome Bootstrap checkbox -->
+  <link rel="stylesheet" href="../resources/css/awesome-bootstrap-checkbox.css">
+  <!-- Admin Stye -->
+  <link rel="stylesheet" href="../resources/css/style1.css">
 
 </head>
 
-<body style="width: 1900px;">
+<body style="background: #E9F0F7;">
 
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-    <div class="login-panel panel panel-default">
-      <div class="panel-heading">Registration</div>
-      <div class="panel-body">
-        <form role="form">
-          <fieldset>
-            <div class="form-group">
-              <input class="form-control" placeholder="First name" name="firtsName" type="text" autofocus="">
+<div class="login-page bk-img" style="background-image: url(../resources/img/login-bg.jpg);">
+  <div class="form-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h1 class="text-center text-bold text-light mt-4x">Sign up</h1>
+          <div class="well row pt-2x pb-3x bk-light">
+            <div class="col-md-8 col-md-offset-2">
+              <form action="" class="mt">
+
+                <label class="text-uppercase text-sm">Username</label>
+                <input type="text" placeholder="Username" class="form-control mb">
+
+                <label class="text-uppercase text-sm">Email</label>
+                <input type="email" placeholder="Email" class="form-control mb">
+
+                <label class="text-uppercase text-sm">Password</label>
+                <input type="password" placeholder="Password" class="form-control mb">
+
+                <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+
+              </form>
             </div>
-            <div class="form-group">
-              <input class="form-control" placeholder="Last name" name="lastName" type="text" autofocus="">
-            </div>
-            <div class="form-group">
-              <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
-            </div>
-            <div class="form-group">
-              <input class="form-control" placeholder="Password" name="password" type="password" value="">
-            </div>
-            <a href="../index.jsp" class="btn btn-primary">Registration</a>
-          </fieldset>
-        </form>
+          </div>
+        </div>
       </div>
     </div>
-  </div><!-- /.col-->
-</div><!-- /.row -->
+  </div>
+</div>
 
-<script src="resources/js/jquery-1.11.1.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/js/chart.min.js"></script>
-<script src="resources/js/chart-data.js"></script>
-<script src="resources/js/easypiechart.js"></script>
-<script src="resources/js/easypiechart-data.js"></script>
-<script src="resources/js/bootstrap-datepicker.js"></script>
 <script>
   !function ($) {
     $(document).on("click","ul.nav li.parent > a > span.icon", function(){
@@ -77,3 +81,4 @@
 </body>
 
 </html>
+
