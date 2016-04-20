@@ -1,4 +1,4 @@
-package com.greenowl.services;
+package com.greenowl.service;
 
 import org.springframework.stereotype.Service;
 

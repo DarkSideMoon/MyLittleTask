@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Created by acube on 27.03.2016.
  */
 @org.springframework.stereotype.Controller
-@RequestMapping(value = "/registration", method = RequestMethod.GET)
 public class HomeController implements Controller  {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/login/", method = RequestMethod.GET)
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest,
                                       HttpServletResponse httpServletResponse) throws Exception {
-        return new ModelAndView("registration");
-    }
+        ModelAndView model = new ModelAndView();
+        model.setViewName("login");
+
+        return model;    }
 }

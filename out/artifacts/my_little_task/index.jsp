@@ -14,7 +14,6 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="icon" href="assets/img/favicon.ico">
 
   <title>My little task</title>
 
@@ -22,7 +21,7 @@
   <link href="assets/css/bootstrap.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="assets/css/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="resources/css/font-awesome.min.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
 
 
