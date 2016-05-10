@@ -1,26 +1,65 @@
 package com.greenowl.model;
 
+import javax.persistence.*;
 import java.awt.*;
 import java.sql.Date;
 
 /**
  * Created by acube on 20.04.2016.
  */
+@Entity
+@Table(name="note")
+@NamedQuery(name = "note.getAll", query = "SELECT w from Note w")
 public class Note {
 
+    // Fileds
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    public Long Id;
+
+    @Column(name = "header")
     public String header;
 
+    @Column(name = "body")
     public String body;
 
-    public Color color;
+    @Column(name = "color")
+    public String color;
 
+    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
     public Date date;
 
-    public Note(String header, String body, Color color, Date date) {
+    @Column(name = "isarchiavable")
+    public boolean isArchiavable;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name="userid", unique = true, nullable = false, updatable = false)
+    public User User;
+
+    // Constructors
+    public Note() {}
+    public Note(String header, String body, String color, Date date) {
         this.header = header;
         this.body = body;
         this.color = color;
         this.date = date;
+    }
+
+    // Getter and Setters
+    public Long getId() {
+        return Id;
+    }
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public com.greenowl.model.User getUser() {
+        return User;
+    }
+    public void setUser(com.greenowl.model.User user) {
+        User = user;
     }
 
     public String getBody() {
@@ -30,10 +69,10 @@ public class Note {
         this.body = body;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -51,4 +90,10 @@ public class Note {
         this.header = header;
     }
 
+    public boolean isArchiavable() {
+        return isArchiavable;
+    }
+    public void setIsArchiavable(boolean isArchiavable) {
+        this.isArchiavable = isArchiavable;
+    }
 }

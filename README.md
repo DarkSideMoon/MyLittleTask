@@ -13,7 +13,11 @@ Simple task manager
 Will coming soon 
 
 ######Requirements:
- * `Server Version` = GlassFish Server Open Source Edition  4.0  (build 90)
- * `Maven` - write the maven version 
+ * `Server Version` - glassFish Server Open Source Edition  4.0  (build 90)
+ * `Maven` - write the maven version
+
+######Technologies:
+ * `JPA` - hibernate
+ * `Web` - spring framework
 
 **Author:** Romashchenko Pavel 
