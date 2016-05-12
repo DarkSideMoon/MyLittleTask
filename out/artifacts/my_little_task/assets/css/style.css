@@ -1,20 +1,8 @@
-/*
- * Author: Mehedi Hasan
- *
- * Theme Name: TS
- * URL: http://themesell.co
- * Version: 1.0
- */
-
-/*	################################################################
-	1. GENERAL STRUCTURES
-################################################################# */
-
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 
-@import url("prettyPhoto.css") screen;
-@import url("hoverex-all.css") screen;
+/*@import url("prettyPhoto.css") screen;*/
+/*@import url("hoverex-all.css") screen;*/
 
 * { 
 	margin: 0;
