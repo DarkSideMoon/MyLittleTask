@@ -2,7 +2,7 @@ package com.greenowl.model;
 
 import javax.persistence.*;
 import java.awt.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by acube on 20.04.2016.

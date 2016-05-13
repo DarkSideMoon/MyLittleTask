@@ -13,6 +13,8 @@ public class SimpleHashPass {
         this.password = pass;
     }
 
+    public SimpleHashPass() {}
+
     public String HashPass() {
         String hashPass = "";
         try {

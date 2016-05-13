@@ -5,14 +5,26 @@ import javax.persistence.*;
 /**
  * Created by acube on 20.04.2016.
  // Using request scope
+ // SQL FRO Create SEQUENCE
+ CREATE SEQUENCE public.hibernate_sequence
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 1
+ CACHE 1;
+ ALTER TABLE public.hibernate_sequence
+ OWNER TO postgres;
+
+
  */
 @Entity
-@Table(name="user")
-@NamedQuery(name = "user.getAll", query = "SELECT w from User w")
+@Table(name="appuser")
+@NamedQuery(name = "appuser.getAll", query = "SELECT w.id from User w")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq_gen")
+    @SequenceGenerator(name = "UserID_seq", sequenceName = "user_id_seq")
     @Column(name = "id")
     public Long Id;
 
@@ -28,8 +40,8 @@ public class User {
     @Column(name = "gmailauth")
     public boolean isGmailAuth;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name="gmailuser", unique = true, nullable = false, updatable = false)
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="gmailuser", nullable = true)
     public GmailUser gmailUser;
 
     //Constructors
