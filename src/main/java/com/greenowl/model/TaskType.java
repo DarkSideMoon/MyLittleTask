@@ -12,7 +12,11 @@ public class TaskType {
 
     // Fileds
     @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserID_seq")
+    @SequenceGenerator(name = "UserID_seq",
+            sequenceName = "user_id_seq",
+            allocationSize = 1,
+            initialValue = 999999999)
     @Column(name = "id")
     public Long Id;
 

@@ -9,12 +9,20 @@ import java.util.Date;
  */
 @Entity
 @Table(name="note")
-@NamedQuery(name = "note.getAll", query = "SELECT w from Note w")
+@NamedQueries({
+        @NamedQuery(name = "note.getAll", query = "SELECT w from Note w"),
+        @NamedQuery(name = "note.getAchievable", query = "SELECT w from Note w where isArchiavable = true")
+})
+
 public class Note {
 
     // Fileds
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NoteID_seq")
+    @SequenceGenerator(name = "NoteID_seq",
+            sequenceName = "note_id_seq",
+            allocationSize = 1,
+            initialValue = 999999999)
     @Column(name = "id")
     public Long Id;
 

@@ -15,16 +15,19 @@ import javax.persistence.*;
  ALTER TABLE public.hibernate_sequence
  OWNER TO postgres;
 
-
+ SELECT id, name, email, gmailauth, gmailuser from appuser
  */
-@Entity
+@Entity(name = "appuser")
 @Table(name="appuser")
-@NamedQuery(name = "appuser.getAll", query = "SELECT w.id from User w")
+@NamedQuery(name = "appuser.getAll", query = "SELECT ap from appuser ap")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq_gen")
-    @SequenceGenerator(name = "UserID_seq", sequenceName = "user_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserID_seq")
+    @SequenceGenerator(name = "UserID_seq",
+            sequenceName = "user_id_seq",
+            allocationSize = 1,
+            initialValue = 999999999)
     @Column(name = "id")
     public Long Id;
 
@@ -38,11 +41,11 @@ public class User {
     public String email;
 
     @Column(name = "gmailauth")
-    public boolean isGmailAuth;
+    public boolean gmailauth;
 
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="gmailuser", nullable = true)
-    public GmailUser gmailUser;
+    public GmailUser gmailuser;
 
     //Constructors
     public User() {}
@@ -76,17 +79,17 @@ public class User {
         return email;
     }
 
-    public boolean isGmailAuth() {
-        return isGmailAuth;
+    public boolean isGmailauth() {
+        return gmailauth;
     }
     public void setIsGmailAuth(boolean isGmailAuth) {
-        this.isGmailAuth = isGmailAuth;
+        this.gmailauth = isGmailAuth;
     }
 
-    public GmailUser getGmailUser() {
-        return gmailUser;
+    public GmailUser getGmailuser() {
+        return gmailuser;
     }
-    public void setGmailUser(GmailUser gmailUser) {
-        this.gmailUser = gmailUser;
+    public void setGmailuser(GmailUser gmailuser) {
+        this.gmailuser = gmailuser;
     }
 }

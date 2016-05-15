@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="TestUserJPA" time="3.021" errors="1" skipped="0">
+<testsuite tests="5" failures="0" name="TestUserJPA" time="6.37" errors="1" skipped="0">
   <properties>
     <property name="idea.version" value="14.1.5"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -12,7 +12,7 @@
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7543"/>
+    <property name="idea.launcher.port" value="7535"/>
     <property name="user.script" value=""/>
     <property name="user.country" value="RU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -65,14 +65,15 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="TestUserJPA" name="TestCreateUser" time="3.007">
-    <error message="org.hibernate.TransientPropertyValueException: Not-null property references a transient value - transient instance must be saved before current operation : com.greenowl.model.User.gmailUser -&gt; com.greenowl.model.GmailUser" type="java.lang.IllegalStateException">java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: Not-null property references a transient value - transient instance must be saved before current operation : com.greenowl.model.User.gmailUser -&gt; com.greenowl.model.GmailUser
-	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1689)
-	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1602)
-	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1608)
-	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:1152)
-	at com.greenowl.logic.dao.impl.UserDaoImpl.create(UserDaoImpl.java:36)
-	at TestUserJPA.TestCreateUser(TestUserJPA.java:25)
+  <testcase classname="TestUserJPA" name="TestEditUser" time="3.506"/>
+  <testcase classname="TestUserJPA" name="TestGetAllUser" time="1.054"/>
+  <testcase classname="TestUserJPA" name="TestDelUser" time="0.579">
+    <error message="attempt to create delete event with null entity" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: attempt to create delete event with null entity
+	at org.hibernate.event.spi.DeleteEvent.&lt;init&gt;(DeleteEvent.java:31)
+	at org.hibernate.internal.SessionImpl.delete(SessionImpl.java:863)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.remove(AbstractEntityManagerImpl.java:1179)
+	at com.greenowl.logic.dao.impl.UserDaoImpl.delete(UserDaoImpl.java:53)
+	at TestUserJPA.TestDelUser(TestUserJPA.java:34)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -102,51 +103,52 @@
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.hibernate.TransientPropertyValueException: Not-null property references a transient value - transient instance must be saved before current operation : com.greenowl.model.User.gmailUser -&gt; com.greenowl.model.GmailUser
-	at org.hibernate.action.internal.UnresolvedEntityInsertActions.checkNoUnresolvedActionsAfterOperation(UnresolvedEntityInsertActions.java:123)
-	at org.hibernate.engine.spi.ActionQueue.checkNoUnresolvedActionsAfterOperation(ActionQueue.java:392)
-	at org.hibernate.internal.SessionImpl.checkNoUnresolvedActionsAfterOperation(SessionImpl.java:622)
-	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:780)
-	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:751)
-	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:756)
-	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:1146)
-	... 31 more
 </error>
-    <system-err>????. 13, 2016 12:55:44 AM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+    <system-out>Hibernate: 
+    select
+        user0_.id as id1_0_0_,
+        user0_.email as email2_0_0_,
+        user0_.gmailauth as gmailaut3_0_0_,
+        user0_.gmailuser as gmailuse6_0_0_,
+        user0_.name as name4_0_0_,
+        user0_.password as password5_0_0_,
+        gmailuser1_.id as id1_1_1_,
+        gmailuser1_.email as email2_1_1_,
+        gmailuser1_.password as password3_1_1_ 
+    from
+        appuser user0_ 
+    left outer join
+        gmailuser gmailuser1_ 
+            on user0_.gmailuser=gmailuser1_.id 
+    where
+        user0_.id=?
+</system-out>
+    <system-err>????. 15, 2016 2:32:09 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
 INFO: HHH000204: Processing PersistenceUnitInfo [
 	name: MyLittleTask
 	...]
-????. 13, 2016 12:55:44 AM org.hibernate.Version logVersion
-INFO: HHH000412: Hibernate Core {5.1.0.Final}
-????. 13, 2016 12:55:44 AM org.hibernate.cfg.Environment &lt;clinit&gt;
-INFO: HHH000206: hibernate.properties not found
-????. 13, 2016 12:55:44 AM org.hibernate.cfg.Environment buildBytecodeProvider
-INFO: HHH000021: Bytecode provider name : javassist
-????. 13, 2016 12:55:45 AM org.hibernate.annotations.common.reflection.java.JavaReflectionManager &lt;clinit&gt;
-INFO: HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
-????. 13, 2016 12:55:45 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+????. 15, 2016 2:32:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-????. 13, 2016 12:55:45 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+????. 15, 2016 2:32:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/my_little_task]
-????. 13, 2016 12:55:45 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+????. 15, 2016 2:32:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {user=postgres, password=****}
-????. 13, 2016 12:55:45 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+????. 15, 2016 2:32:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-????. 13, 2016 12:55:45 AM org.hibernate.engine.jdbc.connections.internal.PooledConnections &lt;init&gt;
+????. 15, 2016 2:32:09 PM org.hibernate.engine.jdbc.connections.internal.PooledConnections &lt;init&gt;
 INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
-????. 13, 2016 12:55:45 AM org.hibernate.dialect.Dialect &lt;init&gt;
+????. 15, 2016 2:32:09 PM org.hibernate.dialect.Dialect &lt;init&gt;
 INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
-????. 13, 2016 12:55:46 AM org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl useContextualLobCreation
+????. 15, 2016 2:32:10 PM org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl useContextualLobCreation
 INFO: HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-????. 13, 2016 12:55:46 AM org.hibernate.type.BasicTypeRegistry register
-INFO: HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@d9345cd
-????. 13, 2016 12:55:47 AM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
+????. 15, 2016 2:32:10 PM org.hibernate.type.BasicTypeRegistry register
+INFO: HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@29215f06
+????. 15, 2016 2:32:10 PM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
 INFO: HHH000397: Using ASTQueryTranslatorFactory
-????. 13, 2016 12:55:47 AM org.hibernate.action.internal.UnresolvedEntityInsertActions logCannotResolveNonNullableTransientDependencies
-WARN: HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
-	Unsaved transient entity: ([com.greenowl.model.GmailUser#&lt;null&gt;])
-	Dependent entities: ([[com.greenowl.model.User#&lt;null&gt;]])
-	Non-nullable association(s): ([com.greenowl.model.User.gmailUser])
+????. 15, 2016 2:32:10 PM org.hibernate.jpa.internal.EntityManagerFactoryRegistry addEntityManagerFactory
+WARN: HHH000436: Entity manager factory name (MyLittleTask) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property &apos;hibernate.ejb.entitymanager_factory_name&apos;
 </system-err>
   </testcase>
+  <testcase classname="TestUserJPA" name="TestCreateUser" time="0.512"/>
+  <testcase classname="TestUserJPA" name="TestReadUser" time="0.623"/>
 </testsuite>

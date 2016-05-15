@@ -1,48 +1,45 @@
 package com.greenowl.logic.dao.impl;
 
-import com.greenowl.logic.dao.UserDao;
-import com.greenowl.model.User;
+import com.greenowl.logic.dao.JdbcDao;
+import com.greenowl.model.GmailUser;
 import org.springframework.stereotype.Repository;
 
 import javax.faces.bean.SessionScoped;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by acube on 12.05.2016.
- * Package ${PACKAGE_NAME}
+ * Created by acube on 14.05.2016.
  * @author Pavel Romashchenko (DarkSideMoon)
  * @version 0.0.0.1
- * @application MyLittleTask
+ * @application My Little Task
  */
 @Repository
 @SessionScoped
-public class UserDaoImpl implements UserDao<User>, Serializable {
+public class GmailUserDaoImpl implements JdbcDao<GmailUser>, Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public UserDaoImpl() {
+    public GmailUserDaoImpl() {
         entityManager = Persistence.createEntityManagerFactory("MyLittleTask").createEntityManager();
     }
 
-    public List<User> getAllUsers() {
-        TypedQuery<User> namedQuery = entityManager.createNamedQuery("appuser.getAll", User.class);
-        return namedQuery.getResultList();
-    }
-
-    public void create(User o) {
+    public void create(GmailUser o) {
         entityManager.getTransaction().begin();
         entityManager.persist(o);
         entityManager.getTransaction().commit();
     }
 
-    public User retrieve(int id) {
-        return entityManager.find(User.class, (long)id);
+    public GmailUser retrieve(int id) {
+        return entityManager.find(GmailUser.class, (long)id);
     }
 
-    public void update(User o) {
+    public void update(GmailUser o) {
         entityManager.getTransaction().begin();
         entityManager.merge(o);
         entityManager.getTransaction().commit();
@@ -52,5 +49,10 @@ public class UserDaoImpl implements UserDao<User>, Serializable {
         entityManager.getTransaction().begin();
         entityManager.remove(this.retrieve(id));
         entityManager.getTransaction().commit();
+    }
+
+    public List<GmailUser> getAllUsers() {
+        TypedQuery<GmailUser> namedQuery = entityManager.createNamedQuery("gmailuser.getAll", GmailUser.class);
+        return namedQuery.getResultList();
     }
 }

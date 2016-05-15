@@ -11,8 +11,11 @@ import javax.persistence.*;
 public class GmailUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "gmail_user_sequence_gen")
-    @SequenceGenerator(name = "gmailuser_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GmailUserID_seq")
+    @SequenceGenerator(name = "GmailUserID_seq",
+            sequenceName = "gmailuser_id_seq",
+            allocationSize = 1,
+            initialValue = 999999999)
     @Column(name = "id")
     public Long Id;
 

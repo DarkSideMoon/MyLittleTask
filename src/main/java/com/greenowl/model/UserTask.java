@@ -11,7 +11,11 @@ public class UserTask {
 
     // Fileds
     @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserInTask_seq")
+    @SequenceGenerator(name = "UserInTask_seq",
+            sequenceName = "user_in_task_id_seq",
+            allocationSize = 1,
+            initialValue = 999999999)
     @Column(name = "id")
     public Long Id;
 

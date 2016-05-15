@@ -5,15 +5,28 @@ import java.sql.Date;
 
 /**
  * Created by acube on 20.04.2016.
+ * Package ${PACKAGE_NAME}
+ * @author Pavel Romashchenko (DarkSideMoon)
+ * @version 0.0.0.1
+ * @application MyLittleTask
  */
 @Entity
 @Table(name="task")
-@NamedQuery(name = "task.getAll", query = "SELECT w from Task w")
+@NamedQueries({
+        @NamedQuery(name = "task.getAll", query = "SELECT w from Task w"),
+        @NamedQuery(name = "task.getByPrioritizing", query = "SELECT w from Task w where prioritising = :priority"),
+        @NamedQuery(name = "task.getByTypeId", query = "SELECT w from Task w where taskType = :taskType"),
+        @NamedQuery(name = "task.getAllInDone", query = "SELECT w from Task w where isDone = true")
+})
 public class Task  {
 
     // Fields
     @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TaskID_seq")
+    @SequenceGenerator(name = "TaskID_seq",
+            sequenceName = "task_id_seq",
+            allocationSize = 1,
+            initialValue = 999999999)
     @Column(name = "id")
     public Long Id;
 
@@ -33,7 +46,7 @@ public class Task  {
     public Date dateDeadLine;
 
     @Column(name = "prioritising")
-    public Integer prioritising;
+    public int prioritising;
 
     @OneToOne(optional = false)
     @JoinColumn(name="typeid", unique = true, nullable = false, updatable = false)
@@ -97,5 +110,12 @@ public class Task  {
     }
     public void setTaskType(TaskType taskType) {
         this.taskType = taskType;
+    }
+
+    public int getPrioritising() {
+        return prioritising;
+    }
+    public void setPrioritising(int prioritising) {
+        this.prioritising = prioritising;
     }
 }

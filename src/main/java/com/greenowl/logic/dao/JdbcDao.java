@@ -1,9 +1,11 @@
 package com.greenowl.logic.dao;
 
-import java.util.List;
-
 /**
  * Created by acube on 12.05.2016.
+ * Package ${PACKAGE_NAME}
+ * @author Pavel Romashchenko (DarkSideMoon)
+ * @version 0.0.0.1
+ * @application MyLittleTask
  */
 public interface JdbcDao<T> {
     // -----------CRUD-----------
@@ -14,5 +16,5 @@ public interface JdbcDao<T> {
     void create(T o);
     T retrieve(int id);
     void update(T o);
-    void delete(T o);
+    void delete(int id);
 }
