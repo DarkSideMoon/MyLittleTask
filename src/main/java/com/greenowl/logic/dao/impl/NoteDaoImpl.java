@@ -2,7 +2,9 @@ package com.greenowl.logic.dao.impl;
 
 import com.greenowl.logic.dao.NoteDao;
 import com.greenowl.model.Note;
+import org.springframework.stereotype.Repository;
 
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
@@ -17,6 +19,8 @@ import java.util.List;
  * @version 0.0.0.1
  * @application MyLittleTask
  */
+@Repository
+@SessionScoped
 public class NoteDaoImpl implements NoteDao<Note>, Serializable {
 
     @PersistenceContext

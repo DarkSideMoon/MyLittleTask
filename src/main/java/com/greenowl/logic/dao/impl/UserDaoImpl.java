@@ -42,6 +42,29 @@ public class UserDaoImpl implements UserDao<User>, Serializable {
         return entityManager.find(User.class, (long)id);
     }
 
+    public User retrieve(String email, String pass) {
+        try {
+            TypedQuery<User> namedQuery = entityManager.createNamedQuery("appuser.findUser", User.class)
+                    .setParameter("email", email)
+                    .setParameter("pass", pass);
+            return namedQuery.getSingleResult();
+        }
+        catch (Exception ex) {
+            return null;
+        }
+    }
+
+    public List<User> retrieve(String email) {
+        try {
+            TypedQuery<User> namedQuery = entityManager.createNamedQuery("appuser.findUserByEmail", User.class)
+                    .setParameter("email", email);
+            return namedQuery.getResultList();
+        }
+        catch (Exception ex) {
+            return null;
+        }
+    }
+
     public void update(User o) {
         entityManager.getTransaction().begin();
         entityManager.merge(o);

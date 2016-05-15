@@ -13,6 +13,8 @@ import java.util.List;
  * Generic DAO for all clases that does not have own DAO interface
  * which extends functionality
  *
+ * Generic DAO for: TaskType.java
+ *
  * Created by acube on 15.05.2016.
  * @author Pavel Romashchenko (DarkSideMoon)
  * @version 0.0.0.1

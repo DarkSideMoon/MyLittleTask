@@ -3,7 +3,9 @@ package com.greenowl.logic.dao.impl;
 import com.greenowl.logic.dao.TaskDao;
 import com.greenowl.model.Task;
 import com.greenowl.model.TaskType;
+import org.springframework.stereotype.Repository;
 
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
@@ -19,6 +21,8 @@ import java.util.List;
  * @version 0.0.0.1
  * @application MyLittleTask
  */
+@Repository
+@SessionScoped
 public class TaskDaoImpl implements TaskDao<Task>, Serializable {
 
     @PersistenceContext

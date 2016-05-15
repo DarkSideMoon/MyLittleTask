@@ -9,6 +9,7 @@
     <version>1.0-MyLittleTask</version>
 
     <dependencies>
+        <!--=================Hibernate=================-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -20,6 +21,7 @@
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.1.Final</version>
         </dependency>
+        <!--================= END Hibernate=================-->
 
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -27,6 +29,7 @@
             <version>9.3-1100-jdbc41</version>
         </dependency>
 
+        <!--=================Spring=================-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -44,6 +47,13 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.2.5.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
+        <!--================= END Spring=================-->
 
         <dependency>
             <groupId>javax.servlet</groupId>

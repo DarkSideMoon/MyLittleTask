@@ -44,7 +44,7 @@ public class Note {
 
     @OneToOne(optional = false)
     @JoinColumn(name="userid", unique = true, nullable = false, updatable = false)
-    public User User;
+    public User user;
 
     // Constructors
     public Note() {}
@@ -64,10 +64,10 @@ public class Note {
     }
 
     public com.greenowl.model.User getUser() {
-        return User;
+        return user;
     }
     public void setUser(com.greenowl.model.User user) {
-        User = user;
+        user = user;
     }
 
     public String getBody() {

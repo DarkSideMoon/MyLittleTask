@@ -7,6 +7,13 @@ import java.util.List;
 
 /**
  * Created by acube on 10.05.2016.
+ * Package ${PACKAGE_NAME}
+ *
+ * WORKS ONLY WITH LOCAL DB - POSTGRES !!!!!!!!!
+ *
+ * @author Pavel Romashchenko (DarkSideMoon)
+ * @version 0.0.0.1
+ * @application MyLittleTask
  */
 public class TestUserJPA {
 /*
@@ -65,5 +72,22 @@ public class TestUserJPA {
         user.email = "test_update@i.ua";
         userDao.update(user);
     }
-*/
+
+    @Test
+    public void TestLogInUser(){
+        SimpleHashPass hashPass = new SimpleHashPass();
+        hashPass.password = "12313TEST";
+
+        UserDaoImpl userDao = new UserDaoImpl();
+        User user = userDao.retrieve("shark005@i.ua", hashPass.HashPass());
+    }
+
+    @Test
+    public void TestFindByEmailUser(){
+
+        UserDaoImpl userDao = new UserDaoImpl();
+        List<User> user = userDao.retrieve("shark005@i.ua");
+    }
+    */
+
 }

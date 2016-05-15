@@ -19,7 +19,11 @@ import javax.persistence.*;
  */
 @Entity(name = "appuser")
 @Table(name="appuser")
-@NamedQuery(name = "appuser.getAll", query = "SELECT ap from appuser ap")
+@NamedQueries({
+        @NamedQuery(name = "appuser.getAll", query = "SELECT ap from appuser ap"),
+        @NamedQuery(name = "appuser.findUser", query = "SELECT ap from appuser ap where email = :email AND password = :pass"),
+        @NamedQuery(name = "appuser.findUserByEmail", query = "SELECT ap from appuser ap where email = :email")
+})
 public class User {
 
     @Id
