@@ -5,6 +5,7 @@
   Time: 0:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -41,17 +42,18 @@
           <h1 class="text-center text-bold text-light mt-4x">Sign in</h1>
           <div class="well row pt-2x pb-3x bk-light">
             <div class="col-md-8 col-md-offset-2">
-              <form action="" class="mt">
+              <form:form action="user/login" class="mt" method="post">
 
                 <label class="text-uppercase text-sm">Your Username or Email</label>
-                <input type="text" placeholder="Username" class="form-control mb">
+                <input type="text" placeholder="Email" name="email" class="form-control mb">
 
                 <label class="text-uppercase text-sm">Password</label>
-                <input type="password" placeholder="Password" class="form-control mb">
+                <input type="password" placeholder="Password" name="pass" class="form-control mb">
 
                 <button class="btn btn-primary btn-block" type="submit">LOGIN</button>
+                <input type="submit" value="Submit"/>
 
-              </form>
+              </form:form>
             </div>
           </div>
         </div>

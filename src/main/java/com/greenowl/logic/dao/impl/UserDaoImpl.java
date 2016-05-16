@@ -20,7 +20,7 @@ import java.util.List;
 @SessionScoped
 public class UserDaoImpl implements UserDao<User>, Serializable {
 
-    @PersistenceContext
+    //@PersistenceContext
     private EntityManager entityManager;
 
     public UserDaoImpl() {

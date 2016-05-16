@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: acube
-  Date: 17.04.2016
-  Time: 23:41
+  Date: 16.05.2016
+  Time: 23:43
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,7 +16,7 @@
   <meta name="author" content="">
   <meta name="theme-color" content="#3e454c">
 
-  <title>Notes</title>
+  <title>Home tasks</title>
 
   <!-- Font awesome -->
   <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
@@ -99,12 +99,66 @@
       <div class="row">
         <div class="col-md-12">
 
-          <h2 class="page-title">My notes</h2>
+          <h2 class="page-title">All tasks</h2>
 
-          <div class="well">
-            <p>
-              <code>.well</code> this is a blank page... What do we do?
-            </p>
+          <div class="panel panel-success">
+            <div class="panel-heading">Contextual tables</div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover ">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Column heading</th>
+                  <th>Column heading</th>
+                  <th>Column heading</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+                <tr class="info">
+                  <td>3</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+                <tr class="success">
+                  <td>4</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+                <tr class="danger">
+                  <td>5</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+                <tr class="warning">
+                  <td>6</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+                <tr class="active">
+                  <td>7</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
         </div>

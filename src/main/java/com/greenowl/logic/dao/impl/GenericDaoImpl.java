@@ -25,7 +25,7 @@ public class GenericDaoImpl<T> implements JdbcDao<T> {
 
     private final Class<T> typeParameterClass;
 
-    @PersistenceContext
+    //@PersistenceContext
     private EntityManager entityManager;
 
     // Define the Class

@@ -25,7 +25,7 @@ import java.util.List;
 @SessionScoped
 public class TaskDaoImpl implements TaskDao<Task>, Serializable {
 
-    @PersistenceContext
+    //@PersistenceContext
     private EntityManager entityManager;
 
     public TaskDaoImpl() {

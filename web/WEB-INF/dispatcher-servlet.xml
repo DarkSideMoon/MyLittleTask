@@ -14,21 +14,24 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-    <!-- Scans the classpath for annotated components that will be auto-registered as Spring beans -->
-    <context:component-scan base-package="com.greenowl" />
     <!-- Activates various annotations to be detected in bean classes e.g: @Autowired -->
     <context:annotation-config />
 
-
+    <!--Resources-->
     <mvc:resources mapping="/resources/**" location="resources/" />
     <mvc:resources mapping="/resources/**" location="/assets/" />
 
+    <!--Scan all folders-->
     <context:component-scan base-package="com.greenowl" />
+    <!--Services-->
+    <!--<context:component-scan base-package="com.greenowl.service" />-->
+    <!--Controllers-->
+    <!--<context:component-scan base-package="com.greenowl.controller" />-->
 
-       <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-              <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-              <property name="prefix" value="/view/"/>
-              <property name="suffix" value=".jsp"/>
-       </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 
 </beans>

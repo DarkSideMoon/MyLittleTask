@@ -22,7 +22,7 @@ import java.util.List;
 @SessionScoped
 public class GmailUserDaoImpl implements JdbcDao<GmailUser>, Serializable {
 
-    @PersistenceContext
+    //@PersistenceContext
     private EntityManager entityManager;
 
     public GmailUserDaoImpl() {

@@ -21,5 +21,6 @@ public class HomeController implements Controller  {
         ModelAndView model = new ModelAndView();
         model.setViewName("login");
 
-        return model;    }
+        return model;
+    }
 }

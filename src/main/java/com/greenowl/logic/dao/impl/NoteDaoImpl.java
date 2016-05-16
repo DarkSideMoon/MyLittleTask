@@ -23,7 +23,7 @@ import java.util.List;
 @SessionScoped
 public class NoteDaoImpl implements NoteDao<Note>, Serializable {
 
-    @PersistenceContext
+    //@PersistenceContext
     private EntityManager entityManager;
 
     public NoteDaoImpl() {
