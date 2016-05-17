@@ -23,6 +23,11 @@
 
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.html</url-pattern> <!--Когда лагает => то есть не грузит стартовую страницу нормально то поменять на *.html и задеплоить снова и вернуть опять-->
+        <url-pattern>/</url-pattern> <!--Когда лагает => то есть не грузит стартовую страницу нормально то поменять на *.html и задеплоить снова и вернуть опять-->
     </servlet-mapping>
+
+    <!-- Index -->
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -45,7 +45,7 @@
     <li class="ts-account">
       <a href="#"><img src="../resources/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
       <ul>
-        <li><a href="#">My Account</a></li>
+        <li><a href="myAccount.jsp">My Account</a></li>
         <li><a href="#">Logout</a></li>
       </ul>
     </li>
@@ -59,30 +59,19 @@
       <li class="open"><a href="dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a href="#"><i class="fa fa-desktop"></i>My Tasks</a>
         <ul>
-          <li><a href="blank.jsp"> All</a></li>
-          <li><a href="blank.jsp"> Home</a></li>
-          <li><a href="blank.jsp"> Work</a></li>
-          <li><a href="blank.jsp"> My</a></li>
-          <li><a href="blank.jsp"> Others</a></li>
+          <li><a href="allTasks.jsp"> All</a></li>
+          <li><a href="homeTasks.jsp"> Home</a></li>
+          <li><a href="workTasks.jsp"> Work</a></li>
+          <li><a href="myTasks.jsp"> My</a></li>
+          <!--<li><a href="otherTasks.jsp"> Others</a></li>-->
         </ul>
       </li>
       <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
       <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> SigmaJS Cahrts</a></li> <!-- Charts with the splitting tasks-->
-      <li><a href="blank.jsp"><i class="fa fa-google"></i> Web</a></li>
+      <li><a href="webEnter.jsp"><i class="fa fa-google"></i> Web</a></li>
       <li><a href="notes.jsp"><i class="fa fa-sticky-note-o"></i> My notes</a></li>
+      <li><a href="notes.jsp"><i class="fa fa-github"></i> About</a></li>
 
-      <!-- Account from above -->
-      <ul class="ts-profile-nav">
-        <li><a href="#">Help</a></li>
-        <li><a href="#">Settings</a></li>
-        <li class="ts-account">
-          <a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
-          <ul>
-            <li><a href="blank.jsp">My Account</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </li>
-      </ul>
     </ul>
 
     <div>
@@ -110,7 +99,7 @@
                         <div class="stat-panel-title text-uppercase">All tasks</div>
                       </div>
                     </div>
-                    <a href="#" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
+                    <a href="allTasks.jsp" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -121,7 +110,7 @@
                         <div class="stat-panel-title text-uppercase">Home</div>
                       </div>
                     </div>
-                    <a href="#" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+                    <a href="homeTasks.jsp" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -132,7 +121,7 @@
                         <div class="stat-panel-title text-uppercase">Work</div>
                       </div>
                     </div>
-                    <a href="#" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+                    <a href="workTasks.jsp" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -143,7 +132,7 @@
                         <div class="stat-panel-title text-uppercase">My</div>
                       </div>
                     </div>
-                    <a href="#" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+                    <a href="myTasks.jsp" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
               </div>

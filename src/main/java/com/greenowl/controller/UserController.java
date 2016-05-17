@@ -18,13 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @application MyLittleTask
  */
 @Controller
-@RequestMapping("view/user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "view/user/login", method= RequestMethod.POST)
+    @RequestMapping(value = "/login", method= RequestMethod.POST)
     public ModelAndView logIn(@RequestParam(value="email") String email,
                               @RequestParam(value="pass") String pass,
                               ModelAndView  modelAndView) {
@@ -41,7 +41,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "view/get", method= RequestMethod.GET)
+    @RequestMapping(value = "/get", method= RequestMethod.GET)
     public ModelAndView logIn(ModelAndView  modelAndView) {
         modelAndView.setViewName("dashboard");
         return modelAndView;

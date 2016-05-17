@@ -3,6 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
         http://www.springframework.org/schema/aop
@@ -18,8 +20,12 @@
     <context:annotation-config />
 
     <!--Resources-->
-    <mvc:resources mapping="/resources/**" location="resources/" />
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources mapping="/resources/**" location="/assets/" />
+
+    <mvc:view-controller path="/" view-name="/index.jsp"/>
+
+
 
     <!--Scan all folders-->
     <context:component-scan base-package="com.greenowl" />
@@ -28,10 +34,50 @@
     <!--Controllers-->
     <!--<context:component-scan base-package="com.greenowl.controller" />-->
 
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+    <mvc:annotation-driven />
+    <tx:annotation-driven/>
+
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--
+        <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <beans:property name="driverClassName" value="org.postgresql.Driver" />
+            <beans:property name="url" value="jdbc:postgresql://localhost:5432/my_little_task" />
+            <beans:property name="username" value="postgres" />
+            <beans:property name="password" value="shark" />
+        </beans:bean>
+
+        <bean id="transactionManager"
+              class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <property name="dataSource" ref="dataSource" />
+        </bean>
+
+        <beans:bean id="hibernate5AnnotatedSessionFactory"
+                    class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+            <beans:property name="dataSource" ref="dataSource" />
+            <beans:property name="annotatedClasses">
+                <beans:list>
+                    <beans:value>com.greenowl.model.GmailUser</beans:value>
+                    <beans:value>com.greenowl.model.Note</beans:value>
+                    <beans:value>com.greenowl.model.Task</beans:value>
+                    <beans:value>com.greenowl.model.TaskType</beans:value>
+                    <beans:value>com.greenowl.model.User</beans:value>
+                    <beans:value>com.greenowl.model.UserTask</beans:value>
+                </beans:list>
+            </beans:property>
+            <beans:property name="hibernateProperties">
+                <beans:props>
+                    <beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</beans:prop>
+                    <beans:prop key="hibernate.show_sql">true</beans:prop>
+                </beans:props>
+            </beans:property>
+        </beans:bean>
+        -->
 
 </beans>

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: acube
-  Date: 16.05.2016
-  Time: 23:43
+  Date: 17.05.2016
+  Time: 0:11
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,7 +16,7 @@
   <meta name="author" content="">
   <meta name="theme-color" content="#3e454c">
 
-  <title>Home tasks</title>
+  <title>Blank</title>
 
   <!-- Font awesome -->
   <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
@@ -36,7 +36,6 @@
   <link rel="stylesheet" href="../resources/css/style1.css">
 
 </head>
-
 <body>
 <div class="brand clearfix">
   <a href="dashboard.jsp" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
@@ -86,70 +85,45 @@
       <div class="row">
         <div class="col-md-12">
 
-          <h2 class="page-title">Home tasks</h2>
+          <h2 class="page-title">Web page</h2>
 
-          <div class="panel panel-success">
-            <div class="panel-heading">Contextual tables</div>
-            <div class="panel-body">
-              <table class="table table-striped table-hover ">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="info">
-                  <td>3</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="success">
-                  <td>4</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="danger">
-                  <td>5</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="warning">
-                  <td>6</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="active">
-                  <td>7</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                </tbody>
-              </table>
+          <div class=" col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">Enter to Google!</div>
+              <div class="panel-body">
+                <form method="get" class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" name="password">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                      <a href="web.jsp" class="btn btn-block btn-social btn-google">
+                        <span class="fa fa-google"></span> Sign in with Google
+                      </a>
+                    </div>
+                  </div>
+
+
+
+                </form>
+
+              </div>
             </div>
           </div>
 
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -166,5 +140,4 @@
 <script src="../resources/js/main.js"></script>
 
 </body>
-
 </html>

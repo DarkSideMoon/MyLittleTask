@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: acube
-  Date: 16.05.2016
-  Time: 23:43
+  Date: 17.05.2016
+  Time: 0:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,7 +16,7 @@
   <meta name="author" content="">
   <meta name="theme-color" content="#3e454c">
 
-  <title>Home tasks</title>
+  <title>Blank</title>
 
   <!-- Font awesome -->
   <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
@@ -36,7 +36,6 @@
   <link rel="stylesheet" href="../resources/css/style1.css">
 
 </head>
-
 <body>
 <div class="brand clearfix">
   <a href="dashboard.jsp" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
@@ -86,70 +85,51 @@
       <div class="row">
         <div class="col-md-12">
 
-          <h2 class="page-title">Home tasks</h2>
+          <h2 class="page-title">Welcome, Pasha!</h2>
 
-          <div class="panel panel-success">
-            <div class="panel-heading">Contextual tables</div>
-            <div class="panel-body">
-              <table class="table table-striped table-hover ">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="info">
-                  <td>3</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="success">
-                  <td>4</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="danger">
-                  <td>5</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="warning">
-                  <td>6</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="active">
-                  <td>7</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                </tbody>
-              </table>
+          <!--Personal information-->
+          <div class="well">
+            <div class="alert alert-dismissible alert-success">
+              <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+              <h4>Warning!</h4>
+              <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+            </div>
+
+            <p class="lead">
+              <strong>Name: </strong> <code name="name">Pasha</code> <br>
+              <strong>Age: </strong> <code name="name">Pasha</code> <br>
+              <strong>Email: </strong> <code name="name">Pasha</code> <br>
+              <strong>Link: </strong> <code name="name">Pasha</code> <br>
+            </p>
+          </div>
+
+
+          <div class="col-md-14">
+            <div class="panel panel-default">
+              <div class="panel-heading">Google</div>
+              <div class="panel-body">
+
+                <h4>Sync Notes with Google keeps</h4>
+                <button type="button" class="btn btn-info btn-circle btn-xl"><i class="fa fa-check"></i></button>
+                <div class="progress progress-striped active">
+                  <div class="progress-bar" style="width: 75%"></div>
+                </div>
+
+                <hr>
+                <h4>Sync Tasks with Google calendar</h4>
+
+                <button type="button" class="btn btn-info btn-circle btn-xl"><i class="fa fa-check"></i></button>
+                <div class="progress progress-striped active">
+                  <div class="progress-bar" style="width: 45%"></div>
+                </div>
+
+              </div>
             </div>
           </div>
 
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -166,5 +146,4 @@
 <script src="../resources/js/main.js"></script>
 
 </body>
-
 </html>
