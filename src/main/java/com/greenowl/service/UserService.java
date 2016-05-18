@@ -52,10 +52,13 @@ public class UserService {
         if(existUsers != null && existUsers.size() >= 1)
             return false;
 
+        SimpleHashPass hashPass = new SimpleHashPass();
         User user = new User();
         user.name = name;
-        user.password = pass;
         user.email = email;
+
+        hashPass.password = pass;
+        user.password = hashPass.HashPass();
 
         userDao.create(user);
         return true;

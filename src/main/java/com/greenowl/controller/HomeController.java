@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import javax.enterprise.inject.Model;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,10 +18,18 @@ public class HomeController   {
 
     // Start page
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView handleRequest(ModelAndView  modelAndView) throws Exception {
+    public ModelAndView handleRequestStart() throws Exception {
         ModelAndView model = new ModelAndView();
         model.setViewName("../index");
 
         return model;
+    }
+
+    // Dashboard
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public ModelAndView handleRequestDashboard(ModelAndView  modelView) throws Exception {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("dashboard");
+        return modelAndView;
     }
 }

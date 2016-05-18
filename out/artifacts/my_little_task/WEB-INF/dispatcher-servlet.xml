@@ -23,9 +23,6 @@
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources mapping="/resources/**" location="/assets/" />
 
-    <mvc:view-controller path="/" view-name="/index.jsp"/>
-
-
 
     <!--Scan all folders-->
     <context:component-scan base-package="com.greenowl" />

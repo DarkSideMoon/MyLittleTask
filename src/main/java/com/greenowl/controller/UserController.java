@@ -24,23 +24,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method= RequestMethod.POST)
-    public ModelAndView logIn(@RequestParam(value="email") String email,
-                              @RequestParam(value="pass") String pass,
-                              ModelAndView  modelAndView) {
-        userService = new UserService();
-        boolean result = userService.LogIn(email, pass);
-
-        if(result) {
-            //modelAndView.addObject("userName", userName);
-            modelAndView.setViewName("dashboard");
-            return modelAndView;
-        } else {
-            modelAndView.setViewName("blank");
-            return modelAndView;
-        }
-    }
-
     @RequestMapping(value = "/get", method= RequestMethod.GET)
     public ModelAndView logIn(ModelAndView  modelAndView) {
         modelAndView.setViewName("dashboard");

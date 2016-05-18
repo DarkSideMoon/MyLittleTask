@@ -5,7 +5,9 @@
   Time: 0:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -29,6 +31,34 @@
   <!-- Admin Stye -->
   <link rel="stylesheet" href="../resources/css/style1.css">
 
+  <script type="text/javascript" src="../resources/js/jquery-1.11.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#sumbit").sumbit(function (e) {
+        e.preventDefault();
+        var dataToSend = JSON.stringify($('#regist').serializeArray());
+
+        // AJAX START -----------------
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:8080/my_little_task/account/registrationUser",
+          data: dataToSend,
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+        })
+                .done(function () {
+                  alert('New user is registed!');
+                })
+                .fail(function () {
+                  alert("Error! Something goes worng!");
+                })
+        ;
+        // AJAX END -------------------
+
+      });
+    });
+  </script>
+
 </head>
 
 <body style="background: #E9F0F7;">
@@ -38,23 +68,23 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h1 class="text-center text-bold text-light mt-4x">Sign up</h1>
+          <h1 class="text-center text-bold text-light mt-4x">Registration</h1>
           <div class="well row pt-2x pb-3x bk-light">
             <div class="col-md-8 col-md-offset-2">
-              <form action="" class="mt">
+              <form:form action="registrationUser" id="regist" class="mt" method="post">
 
                 <label class="text-uppercase text-sm">Username</label>
-                <input type="text" placeholder="Username" class="form-control mb">
+                <input type="text" placeholder="Username" name="username" class="form-control mb">
 
                 <label class="text-uppercase text-sm">Email</label>
-                <input type="email" placeholder="Email" class="form-control mb">
+                <input type="email" placeholder="Email" name="email" class="form-control mb">
 
                 <label class="text-uppercase text-sm">Password</label>
-                <input type="password" placeholder="Password" class="form-control mb">
+                <input type="password" placeholder="Password" name="pass" class="form-control mb">
 
-                <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+                <button class="btn btn-primary btn-block" id="sumbit" type="submit">Regist</button>
 
-              </form>
+              </form:form>
             </div>
           </div>
         </div>
