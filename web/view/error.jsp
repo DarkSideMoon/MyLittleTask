@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: acube
-  Date: 17.04.2016
-  Time: 23:35
+  Date: 19.05.2016
+  Time: 1:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
 <html lang="en" class="no-js">
 
 <head>
@@ -16,7 +17,7 @@
   <meta name="author" content="">
   <meta name="theme-color" content="#3e454c">
 
-  <title>Blank</title>
+  <title>Error</title>
 
   <!-- Font awesome -->
   <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
@@ -34,69 +35,35 @@
   <link rel="stylesheet" href="../resources/css/awesome-bootstrap-checkbox.css">
   <!-- Admin Stye -->
   <link rel="stylesheet" href="../resources/css/style1.css">
-
 </head>
 
 <body>
-<div class="brand clearfix">
-  <a href="dashboard.jsp" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
-  <span class="menu-btn"><i class="fa fa-bars"></i></span>
-  <ul class="ts-profile-nav">
-    <li class="ts-account">
-      <a href="#"><img src="../resources/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
-      <ul>
-        <li><a href="myAccount.jsp">My Account</a></li>
-        <li><a href="signout.jsp">Logout</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
+
 
 <div class="ts-main-content">
-  <nav class="ts-sidebar">
-    <ul class="ts-sidebar-menu">
-      <li class="ts-label">Main</li>
-      <li class="open"><a href="dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="#"><i class="fa fa-desktop"></i>My Tasks</a>
-        <ul>
-          <li><a href="allTasks.jsp"> All</a></li>
-          <li><a href="homeTasks.jsp"> Home</a></li>
-          <li><a href="workTasks.jsp"> Work</a></li>
-          <li><a href="myTasks.jsp"> My</a></li>
-          <!--<li><a href="otherTasks.jsp"> Others</a></li>-->
-        </ul>
-      </li>
-      <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
-      <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> SigmaJS Cahrts</a></li> <!-- Charts with the splitting tasks-->
-      <li><a href="blank.jsp"><i class="fa fa-google"></i> Web</a></li>
-      <li><a href="notes.jsp"><i class="fa fa-sticky-note-o"></i> My notes</a></li>
-
-    </ul>
-
-    <div>
-      <blockquote>
-        <p style="color: white;">User in system</p>
-      </blockquote>
-    </div>
-  </nav>
   <div class="content-wrapper">
     <div class="container-fluid">
-
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
 
-          <h2 class="page-title">Blank page</h2>
+          <h1 class="page-title">Error</h1>
 
           <div class="well">
-            <p>
-              <code>.well</code> this is a blank page... What do we do?
-            </p>
+            <h3><code name="errorIn" id="errorIn">${errorIn}</code></h3>
+            <h3 class="text-primary">Stack trace</h3>
+            <h3><p class="text-danger" name="stackTrace" id="stackTrace">${stackTrace}</p></h3>
           </div>
 
         </div>
       </div>
 
-
+      <div class="row">
+        <div class="clearfix pt pb">
+          <div class="col-md-12">
+            <em>Thank you for using Task Service</em>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -111,7 +78,6 @@
 <script src="../resources/js/fileinput.js"></script>
 <script src="../resources/js/chartData.js"></script>
 <script src="../resources/js/main.js"></script>
-
 </body>
 
 </html>

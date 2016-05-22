@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,6 +77,22 @@ public class TaskDaoImpl implements TaskDao<Task>, Serializable {
 
     public List<Task> getAll() {
         TypedQuery<Task> namedQuery = entityManager.createNamedQuery("task.getAll", Task.class);
-        return namedQuery.getResultList();    }
+        return namedQuery.getResultList();
+    }
+
+    public List<Integer> getTasksByTypes() {
+        List<Integer> result = new ArrayList<>();
+
+        int homeTasksCount = this.getByTypeId(1).size();
+        int workTasksCount = this.getByTypeId(2).size();
+        int myTasksCount = this.getByTypeId(3).size();
+        int allTasksCount = homeTasksCount + workTasksCount + myTasksCount;
+
+        result.add(homeTasksCount);
+        result.add(workTasksCount);
+        result.add(myTasksCount);
+        result.add(allTasksCount);
+        return result;
+    }
 
 }

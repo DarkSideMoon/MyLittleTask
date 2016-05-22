@@ -76,7 +76,7 @@
 
     <div>
       <blockquote>
-        <p style="color: white;">User in system</p>
+        <p style="color: white;" id="userInSystem" name="userInSystem">${userInSystem}</p>
       </blockquote>
     </div>
   </nav>
@@ -95,7 +95,7 @@
                   <div class="panel panel-default">
                     <div class="panel-body bk-primary text-light">
                       <div class="stat-panel text-center">
-                        <div class="stat-panel-number h1 ">38</div>
+                        <div class="stat-panel-number h1 ">${allTasks}</div>
                         <div class="stat-panel-title text-uppercase">All tasks</div>
                       </div>
                     </div>
@@ -106,7 +106,7 @@
                   <div class="panel panel-default">
                     <div class="panel-body bk-success text-light">
                       <div class="stat-panel text-center">
-                        <div class="stat-panel-number h1 ">8</div>
+                        <div class="stat-panel-number h1 ">${homeTasks}</div>
                         <div class="stat-panel-title text-uppercase">Home</div>
                       </div>
                     </div>
@@ -117,7 +117,7 @@
                   <div class="panel panel-default">
                     <div class="panel-body bk-info text-light">
                       <div class="stat-panel text-center">
-                        <div class="stat-panel-number h1 ">12</div>
+                        <div class="stat-panel-number h1 ">${workTasks}</div>
                         <div class="stat-panel-title text-uppercase">Work</div>
                       </div>
                     </div>
@@ -128,7 +128,7 @@
                   <div class="panel panel-default">
                     <div class="panel-body bk-warning text-light">
                       <div class="stat-panel text-center">
-                        <div class="stat-panel-number h1 ">18</div>
+                        <div class="stat-panel-number h1 ">${myTasks}</div>
                         <div class="stat-panel-title text-uppercase">My</div>
                       </div>
                     </div>

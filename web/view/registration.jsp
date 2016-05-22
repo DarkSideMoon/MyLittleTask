@@ -31,34 +31,6 @@
   <!-- Admin Stye -->
   <link rel="stylesheet" href="../resources/css/style1.css">
 
-  <script type="text/javascript" src="../resources/js/jquery-1.11.1.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $("#sumbit").sumbit(function (e) {
-        e.preventDefault();
-        var dataToSend = JSON.stringify($('#regist').serializeArray());
-
-        // AJAX START -----------------
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:8080/my_little_task/account/registrationUser",
-          data: dataToSend,
-          contentType: "application/json; charset=utf-8",
-          dataType: "json",
-        })
-                .done(function () {
-                  alert('New user is registed!');
-                })
-                .fail(function () {
-                  alert("Error! Something goes worng!");
-                })
-        ;
-        // AJAX END -------------------
-
-      });
-    });
-  </script>
-
 </head>
 
 <body style="background: #E9F0F7;">

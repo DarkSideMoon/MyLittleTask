@@ -42,7 +42,7 @@
           <h1 class="text-center text-bold text-light mt-4x">Sign in</h1>
           <div class="well row pt-2x pb-3x bk-light">
             <div class="col-md-8 col-md-offset-2">
-              <form:form action="user/login" class="mt" method="post">
+              <form:form action="loginUser" class="mt" method="post">
 
                 <label class="text-uppercase text-sm">Your Username or Email</label>
                 <input type="text" placeholder="Email" name="email" class="form-control mb">
@@ -51,8 +51,6 @@
                 <input type="password" placeholder="Password" name="pass" class="form-control mb">
 
                 <button class="btn btn-primary btn-block" type="submit">LOGIN</button>
-                <input type="submit" value="Submit"/>
-
               </form:form>
             </div>
           </div>

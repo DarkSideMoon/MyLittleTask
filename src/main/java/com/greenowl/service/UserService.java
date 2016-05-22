@@ -45,10 +45,8 @@ public class UserService {
 
     @Transactional
     public boolean Register(String name, String pass, String email) {
-        UserDaoImpl dao = new UserDaoImpl();
-
         // Check if User with email exist in DB
-        List<User> existUsers = dao.retrieve(email);
+        List<User> existUsers = userDao.retrieve(email);
         if(existUsers != null && existUsers.size() >= 1)
             return false;
 
@@ -62,5 +60,12 @@ public class UserService {
 
         userDao.create(user);
         return true;
+    }
+
+    @Transactional
+    public User getUser(String email, String pass) {
+        SimpleHashPass hashPass = new SimpleHashPass();
+        hashPass.password = pass;
+        return userDao.retrieve(email, hashPass.HashPass());
     }
 }

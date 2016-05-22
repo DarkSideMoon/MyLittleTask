@@ -23,6 +23,9 @@ public class TaskType {
     @Column(name = "name")
     public String name;
 
+    // Not mapped fields
+    @Transient
+    public Integer count;
     // Constructors
     public TaskType() {}
 
@@ -39,5 +42,12 @@ public class TaskType {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

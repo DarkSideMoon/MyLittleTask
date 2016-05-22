@@ -17,7 +17,6 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
     <!-- Activates various annotations to be detected in bean classes e.g: @Autowired -->
-    <context:annotation-config />
 
     <!--Resources-->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
@@ -26,8 +25,10 @@
 
     <!--Scan all folders-->
     <context:component-scan base-package="com.greenowl" />
+
     <!--Services-->
     <!--<context:component-scan base-package="com.greenowl.service" />-->
+
     <!--Controllers-->
     <!--<context:component-scan base-package="com.greenowl.controller" />-->
 
@@ -41,6 +42,7 @@
         <property name="prefix" value="/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
 
     <!--
         <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
