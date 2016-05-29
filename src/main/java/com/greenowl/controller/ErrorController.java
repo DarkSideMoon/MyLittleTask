@@ -31,8 +31,16 @@ public class ErrorController {
     }
 
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
-    @ResponseBody
     public ModelAndView handleErrorViewAccessDenied() throws Exception{
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("errorIn", "Error in ");
+        modelAndView.addObject("stackTrace", "");
+        modelAndView.setViewName("error");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ModelAndView handleErrorView() throws Exception{
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("errorIn", "Error in ");
         modelAndView.addObject("stackTrace", "");

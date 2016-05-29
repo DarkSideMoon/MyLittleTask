@@ -4,6 +4,9 @@ import com.greenowl.model.User;
 import com.greenowl.service.TaskService;
 import com.greenowl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -99,5 +104,19 @@ public class AccountController {
         catch (Exception ex) {
             return new ModelAndView("redirect:/error/notfound?place=AccountController&&traceError=Error registration new user!");
         }
+    }
+
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public ModelAndView logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("errorIn", "403 Access denied!");
+        modelAndView.addObject("stackTrace", "You are not authorized to access this page");
+        modelAndView.setViewName("error");
+        return modelAndView;
     }
 }

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="PostgreSQL - my_little_task@localhost" uuid="ba8324c4-f517-45c2-86ea-27af72a629c7">
-      <secret-storage>master_key</secret-storage>
-      <user-name>postgres</user-name>
-      <schema-pattern>my_little_task.pg_catalog my_little_task.public</schema-pattern>
-      <default-schemas>my_little_task.pg_catalog my_little_task.public</default-schemas>
-    </data-source>
+    <data-source name="PostgreSQL - my_little_task@localhost" uuid="ba8324c4-f517-45c2-86ea-27af72a629c7" />
   </component>
 </project>

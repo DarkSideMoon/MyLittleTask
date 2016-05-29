@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: acube
@@ -52,6 +53,8 @@
             <h3><code name="errorIn" id="errorIn">${errorIn}</code></h3>
             <h3 class="text-primary">Stack trace</h3>
             <h3><p class="text-danger" name="stackTrace" id="stackTrace">${stackTrace}</p></h3>
+
+            <a href="<c:url value="/account/logout" />">Logout</a>
           </div>
 
         </div>

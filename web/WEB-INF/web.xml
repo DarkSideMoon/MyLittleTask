@@ -10,10 +10,10 @@
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
+        <!--<init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
-        </init-param>
+            <param-value>web/WEB-INF/springMvcServlet-servlet.xml</param-value>
+        </init-param>-->
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -29,12 +29,12 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            /WEB-INF/applicationContext.xml
-            /WEB-INF/spring-security.xml
+            web/WEB-INF/dispatcher-servlet.xml
         </param-value>
     </context-param>
 
     <!--Security-->
+    <!--
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -44,5 +44,6 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    -->
 
 </web-app>

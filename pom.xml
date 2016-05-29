@@ -6,6 +6,7 @@
 
     <groupId>groupId</groupId>
     <artifactId>MyLittleTask</artifactId>
+    <packaging>war</packaging>
     <version>1.0-MyLittleTask</version>
 
     <dependencies>
@@ -21,6 +22,12 @@
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.1.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.1.0.Final</version>
+        </dependency>
         <!--================= END Hibernate=================-->
 
         <dependency>
@@ -33,6 +40,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>4.2.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
             <version>4.2.5.RELEASE</version>
         </dependency>
 
@@ -54,13 +67,18 @@
             <version>4.2.4.RELEASE</version>
         </dependency>
 
-        <!-- Spring Security -->
-        <dependency>
+        <!--=================Spring Security=================-->
+        <!--<dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>4.1.0.RELEASE</version>
-        </dependency>
+        </dependency>-->
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>4.1.0.RELEASE</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -122,6 +140,18 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <webXml>web\WEB-INF\web.xml</webXml>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
