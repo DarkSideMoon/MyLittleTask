@@ -2,11 +2,10 @@ package com.greenowl.service;
 
 import com.greenowl.logic.dao.impl.TaskDaoImpl;
 import com.greenowl.model.Task;
-import com.greenowl.model.TaskType;
+import com.greenowl.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Dictionary;
 import java.util.List;
 
 /**
@@ -47,20 +46,24 @@ public class TaskService {
         return this.taskDao.getAllInDone();
     }
 
-    public List<Task> getTasksByType(int typeId) {
-        return this.taskDao.getByTypeId(typeId);
+    public List<Task> getTasksByType(int typeId, User user) {
+        return this.taskDao.getByTypeId(typeId, user);
     }
 
-    public List<Task> getTasksByPriority(int priorityId) {
-        return this.taskDao.getByPrioritazing(priorityId);
+    public List<Task> getTasksByPriority(int priorityId, User user) {
+        return this.taskDao.getByPrioritazing(priorityId, user);
     }
 
     // List of task counts by type
-    // 1 - Home
-    // 2 - Work
-    // 3 - My
-    // 4 - All
-    public List<Integer> getAllTasksByTypes() {
-        return this.taskDao.getTasksByTypes();
+    // 0 - Home
+    // 1 - Work
+    // 2 - My
+    // 3 - All
+    public List<Integer> getAllTasksByTypes(User user) {
+        return this.taskDao.getTasksByTypes(user);
+    }
+
+    public List<Task> getUserTasks(User user) {
+        return this.taskDao.getUserTasks(user);
     }
 }

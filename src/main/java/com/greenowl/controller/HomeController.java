@@ -2,13 +2,7 @@ package com.greenowl.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
-
-import javax.enterprise.inject.Model;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by acube on 27.03.2016.
@@ -27,7 +21,7 @@ public class HomeController   {
 
     // Dashboard
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView handleRequestDashboard(ModelAndView  modelView) throws Exception {
+    public ModelAndView handleRequestDashboard(ModelAndView modelView) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("dashboard");
         return modelAndView;

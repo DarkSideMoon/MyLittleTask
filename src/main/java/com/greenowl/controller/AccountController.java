@@ -8,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +37,7 @@ public class AccountController {
 
     // Retrun login page
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView handleRequestLogin(ModelAndView  modelView) throws Exception{
+    public ModelAndView handleRequestLogin(ModelAndView modelView) throws Exception{
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
@@ -46,7 +45,7 @@ public class AccountController {
 
     // Return registration page
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public ModelAndView handleRequestRegistration(ModelAndView  modelView) throws Exception {
+    public ModelAndView handleRequestRegistration(ModelAndView modelView) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("registration");
         return modelAndView;
@@ -63,13 +62,25 @@ public class AccountController {
             User user = userService.getUser(email, pass);
 
             if (result) {
-                List<Integer> resTasksTypeCounts = taskService.getAllTasksByTypes();
+                List<Integer> resTasksTypeCounts = taskService.getAllTasksByTypes(user);
 
-                view.addObject("userInSystem", user.getName());
-                view.addObject("allTasks", resTasksTypeCounts.get(3));
-                view.addObject("homeTasks", resTasksTypeCounts.get(0));
-                view.addObject("workTasks", resTasksTypeCounts.get(1));
-                view.addObject("myTasks", resTasksTypeCounts.get(2));
+                int temp = resTasksTypeCounts.get(3);
+                int allTasksCount = temp == 0 || user == null ? 0 : temp;
+
+                temp = resTasksTypeCounts.get(0);
+                int homeTasksCount = temp == 0 || user == null ? 0 : temp;
+
+                temp = resTasksTypeCounts.get(1);
+                int workTasksCount = temp == 0 || user == null ? 0 : temp;
+
+                temp = resTasksTypeCounts.get(2);
+                int myTasksCount = temp == 0 || user == null ? 0 : temp;
+
+                view.addObject("userInSystem", user != null ? user.getName() : null);
+                view.addObject("allTasks", allTasksCount);
+                view.addObject("homeTasks", homeTasksCount);
+                view.addObject("workTasks", workTasksCount);
+                view.addObject("myTasks", myTasksCount);
 
 
                 view.setViewName("dashboard");
@@ -88,7 +99,7 @@ public class AccountController {
     public ModelAndView registrationForm(@RequestParam(value="username") String userName,
             @RequestParam(value="email") String email,
             @RequestParam(value="pass") String pass,
-            ModelAndView  modelAndView) {
+            ModelAndView modelAndView) {
 
         try {
             userService = new UserService();

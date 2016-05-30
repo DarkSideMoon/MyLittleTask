@@ -1,7 +1,6 @@
 package com.greenowl.model;
 
 import javax.persistence.*;
-import java.awt.*;
 import java.util.Date;
 
 /**
@@ -17,7 +16,7 @@ import java.util.Date;
 public class Note {
 
     // Fileds
-    @Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NoteID_seq")
     @SequenceGenerator(name = "NoteID_seq",
             sequenceName = "note_id_seq",

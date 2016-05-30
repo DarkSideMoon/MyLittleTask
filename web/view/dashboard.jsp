@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en" class="no-js">
 
 <head>
@@ -39,14 +40,14 @@
 
 <body>
 <div class="brand clearfix">
-  <a href="dashboard.jsp" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
+  <a href="<c:url value="/dashboard" />" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
   <span class="menu-btn"><i class="fa fa-bars"></i></span>
   <ul class="ts-profile-nav">
     <li class="ts-account">
       <a href="#"><img src="../resources/img/user.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
       <ul>
-        <li><a href="myAccount.jsp">My Account</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="<c:url value="" />">My Account</a></li>
+        <li><a href="<c:url value="/account/logout" />">Logout</a></li>
       </ul>
     </li>
   </ul>
@@ -56,21 +57,23 @@
   <nav class="ts-sidebar">
     <ul class="ts-sidebar-menu">
       <li class="ts-label">Main</li>
-      <li class="open"><a href="dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li class="open"><a href="<c:url value="/main/board" />"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a href="#"><i class="fa fa-desktop"></i>My Tasks</a>
         <ul>
-          <li><a href="allTasks.jsp"> All</a></li>
-          <li><a href="homeTasks.jsp"> Home</a></li>
-          <li><a href="workTasks.jsp"> Work</a></li>
-          <li><a href="myTasks.jsp"> My</a></li>
-          <!--<li><a href="otherTasks.jsp"> Others</a></li>-->
+          <li><a href="<c:url value="/task/addPage" />"> Add task</a></li>
+          <li><a href="<c:url value="/task/all" />"> All</a></li>
+          <li><a href="<c:url value="/task/home" />"> Home</a></li>
+          <li><a href="<c:url value="/task/work" />"> Work</a></li>
+          <li><a href="<c:url value="/task/my" />"> My</a></li>
+          <!--<li><a href="otherTasks.jsp">
+          Others</a></li>-->
         </ul>
       </li>
       <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
       <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> SigmaJS Cahrts</a></li> <!-- Charts with the splitting tasks-->
       <li><a href="webEnter.jsp"><i class="fa fa-google"></i> Web</a></li>
       <li><a href="notes.jsp"><i class="fa fa-sticky-note-o"></i> My notes</a></li>
-      <li><a href="notes.jsp"><i class="fa fa-github"></i> About</a></li>
+      <li><a href="<c:url value="/about" />"><i class="fa fa-github"></i> About</a></li>
 
     </ul>
 
@@ -99,7 +102,7 @@
                         <div class="stat-panel-title text-uppercase">All tasks</div>
                       </div>
                     </div>
-                    <a href="allTasks.jsp" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
+                    <a href="<c:url value="/task/all" />" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -110,7 +113,7 @@
                         <div class="stat-panel-title text-uppercase">Home</div>
                       </div>
                     </div>
-                    <a href="homeTasks.jsp" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+                    <a href="<c:url value="/task/home" />" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -121,7 +124,7 @@
                         <div class="stat-panel-title text-uppercase">Work</div>
                       </div>
                     </div>
-                    <a href="workTasks.jsp" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+                    <a href="<c:url value="/task/work" />" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -132,7 +135,7 @@
                         <div class="stat-panel-title text-uppercase">My</div>
                       </div>
                     </div>
-                    <a href="myTasks.jsp" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+                    <a href="<c:url value="/task/my" />" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
               </div>

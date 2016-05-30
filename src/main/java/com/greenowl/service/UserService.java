@@ -62,7 +62,7 @@ public class UserService {
         return true;
     }
 
-    @Transactional
+    //@Transactional
     public User getUser(String email, String pass) {
         SimpleHashPass hashPass = new SimpleHashPass();
         hashPass.password = pass;

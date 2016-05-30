@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DashboardController {
 
     @RequestMapping(value = "/board", method= RequestMethod.GET)
-    public ModelAndView logIn(ModelAndView  modelAndView) {
+    public ModelAndView logIn(ModelAndView modelAndView) {
         modelAndView.setViewName("dashboard");
         return modelAndView;
     }

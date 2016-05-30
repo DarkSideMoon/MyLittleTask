@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NamedQuery(name = "gmailuser.getAll", query = "SELECT w from GmailUser w")
 public class GmailUser {
 
-    @Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GmailUserID_seq")
     @SequenceGenerator(name = "GmailUserID_seq",
             sequenceName = "gmailuser_id_seq",

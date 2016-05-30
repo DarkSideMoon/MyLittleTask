@@ -1,5 +1,6 @@
 import com.greenowl.logic.dao.impl.GenericDaoImpl;
 import com.greenowl.model.TaskType;
+import com.greenowl.service.TaskTypeService;
 import org.junit.Test;
 
 /**
@@ -12,7 +13,7 @@ import org.junit.Test;
  */
 public class TestTaskTypeJPA {
 
-    /*
+
     @Test
     public void TestCreateTaskType() {
         TaskType taskType = new TaskType();
@@ -21,5 +22,10 @@ public class TestTaskTypeJPA {
         GenericDaoImpl<TaskType> genericDao = new GenericDaoImpl<TaskType>(TaskType.class);
         genericDao.create(taskType);
     }
-    */
+
+    @Test
+    public void TestGetTaskTypeByName() {
+        TaskTypeService service = new TaskTypeService();
+        TaskType type = service.getTypeByName("Home");
+    }
 }

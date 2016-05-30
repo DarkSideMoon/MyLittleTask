@@ -18,15 +18,11 @@
   <title>My little task</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="resources/assets/css/bootstrap.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="resources/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+  <link href="resources/assets/css/style.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -130,7 +126,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <img src="assets/img/items.png" class="img-responsive" alt="">
+      <img src="resources/assets/img/items.png" class="img-responsive" alt="">
     </div>
   </div><!--/row-->
 </div><!--/.container-->
@@ -156,14 +152,16 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/retina-1.1.0.js"></script>
-<script src="assets/js/jquery.hoverdir.js"></script>
-<script src="assets/js/jquery.hoverex.min.js"></script>
-<script src="assets/js/jquery.prettyPhoto.js"></script>
-<script src="assets/js/jquery.isotope.min.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="resources/assets/js/jquery.min.js"></script>
+<script src="resources/assets/js/bootstrap.min.js"></script>
+<script src="resources/assets/js/retina-1.1.0.js"></script>
+<!--
+<script src="resources/assets/js/jquery.hoverdir.js"></script>
+<script src="resources/assets/js/jquery.hoverex.min.js"></script>
+<script src="resources/assets/js/jquery.prettyPhoto.js"></script>
+<script src="resources/assets/js/jquery.isotope.min.js"></script>
+-->
+<script src="resources/assets/js/custom.js"></script>
 
 
 <script>

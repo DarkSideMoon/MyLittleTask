@@ -1,6 +1,8 @@
 import com.greenowl.logic.dao.impl.TaskDaoImpl;
 import com.greenowl.model.Task;
 import com.greenowl.model.TaskType;
+import com.greenowl.model.User;
+import com.greenowl.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,7 +26,7 @@ public class TestTaskJPA {
         taskType.Id = (long)1;
 
         Task task = new Task();
-        task.name = "New task";
+        task.name = "Tom Cat task test";
         task.prioritising = 3;
         task.isDone = true;
         task.taskType = taskType;
@@ -35,8 +37,8 @@ public class TestTaskJPA {
         TaskDaoImpl dao = new TaskDaoImpl();
         dao.create(task);
     }
-    */
-    /*
+
+
     @Test
     public void TestGetAll() {
         TaskDaoImpl dao = new TaskDaoImpl();
@@ -51,8 +53,11 @@ public class TestTaskJPA {
 
     @Test
     public void TestGetTaskByTypeId() {
+        UserService service = new UserService();
+        User user = service.getUser("123@asd", "12345");
+
         TaskDaoImpl dao = new TaskDaoImpl();
-        List<Task> allDoneTasks = dao.getByTypeId(1);
+        List<Task> allDoneTasks = dao.getByTypeId(1, user);
     }
 
     @Test
@@ -60,13 +65,18 @@ public class TestTaskJPA {
         TaskDaoImpl dao = new TaskDaoImpl();
         List<Task> allDoneTasks = dao.getByPrioritazing(2);
     }
-    */
 
-    /*
+
+    // 0 - Home
+    // 1 - Work
+    // 2 - My
+    // 3 - All
     @Test
     public void TestGetTasksByTypesCount() {
+        UserService service = new UserService();
+        User user = service.getUser("123@asd", "12345");
         TaskDaoImpl dao = new TaskDaoImpl();
-        List<Integer> res = dao.getTasksByTypes();
+        List<Integer> res = dao.getTasksByTypes(user);
 
         Assert.assertEquals(res.get(0).intValue(), 3);
         Assert.assertEquals(res.get(1).intValue(), 2);
@@ -74,4 +84,5 @@ public class TestTaskJPA {
         Assert.assertEquals(res.get(3).intValue(), 7);
     }
     */
+
 }

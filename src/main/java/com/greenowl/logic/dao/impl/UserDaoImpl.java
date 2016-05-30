@@ -5,7 +5,9 @@ import com.greenowl.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.faces.bean.SessionScoped;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
 

@@ -17,25 +17,12 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
     <!-- Activates various annotations to be detected in bean classes e.g: @Autowired -->
-
-    <!--Resources-->
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <mvc:resources mapping="/resources/**" location="/assets/" />
-
-
     <context:annotation-config />
+
     <!--Scan all folders-->
     <context:component-scan base-package="com.greenowl" />
-
-    <context:component-scan base-package="com.greenowl.service" />
-    <context:component-scan base-package="com.greenowl.model" />
-    <context:component-scan base-package="com.greenowl.logic" />
-    <context:component-scan base-package="com.greenowl.logic.dao" />
-    <context:component-scan base-package="com.greenowl.controller" />
-
     <!--Services-->
     <!--<context:component-scan base-package="com.greenowl.service" />-->
-
     <!--Controllers-->
     <!--<context:component-scan base-package="com.greenowl.controller" />-->
 
@@ -44,12 +31,15 @@
     <mvc:annotation-driven />
     <tx:annotation-driven/>
 
+
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--Resources-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!--
         <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

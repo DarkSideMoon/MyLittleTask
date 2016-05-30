@@ -3,12 +3,12 @@ package com.greenowl.logic.dao.impl;
 import com.greenowl.logic.dao.TaskDao;
 import com.greenowl.model.Task;
 import com.greenowl.model.TaskType;
+import com.greenowl.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -55,18 +55,23 @@ public class TaskDaoImpl implements TaskDao<Task>, Serializable {
         entityManager.getTransaction().commit();
     }
 
-    public List<Task> getByTypeId(int id) {
+    public List<Task> getByTypeId(int id, User user) {
+        User us = user;
         TaskType type = new TaskType();
         type.Id = (long)id;
 
         TypedQuery<Task> namedQuery = entityManager.createNamedQuery("task.getByTypeId", Task.class)
-                .setParameter("taskType", type);
+                .setParameter("taskType", type)
+                .setParameter("user", us);
         return namedQuery.getResultList();
     }
 
-    public List<Task> getByPrioritazing(int priority) {
+    public List<Task> getByPrioritazing(int priority, User user) {
+        User us = user;
+
         TypedQuery<Task> namedQuery = entityManager.createNamedQuery("task.getByPrioritizing", Task.class)
-                .setParameter("priority", priority);
+                .setParameter("priority", priority)
+                .setParameter("user", us);
         return namedQuery.getResultList();
     }
 
@@ -80,18 +85,31 @@ public class TaskDaoImpl implements TaskDao<Task>, Serializable {
         return namedQuery.getResultList();
     }
 
-    public List<Integer> getTasksByTypes() {
+    public List<Integer> getTasksByTypes(User user) {
         List<Integer> result = new ArrayList<>();
 
-        int homeTasksCount = this.getByTypeId(1).size();
-        int workTasksCount = this.getByTypeId(2).size();
-        int myTasksCount = this.getByTypeId(3).size();
+        int homeTasksCount = this.getByTypeId(1, user).size();
+        int workTasksCount = this.getByTypeId(2, user).size();
+        int myTasksCount = this.getByTypeId(3, user).size();
         int allTasksCount = homeTasksCount + workTasksCount + myTasksCount;
 
         result.add(homeTasksCount);
         result.add(workTasksCount);
         result.add(myTasksCount);
         result.add(allTasksCount);
+        return result;
+    }
+
+    public List<Task> getUserTasks(User user) {
+        List<Task> result = new ArrayList<>();
+
+        List<Task> homeTasks = this.getByTypeId(1, user);
+        List<Task> workTasks = this.getByTypeId(2, user);
+        List<Task> myTasks = this.getByTypeId(3, user);
+
+        homeTasks.forEach(result::add);
+        workTasks.forEach(result::add);
+        myTasks.forEach(result::add);
         return result;
     }
 

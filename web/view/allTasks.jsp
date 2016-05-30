@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="script" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en" class="no-js">
 
 <head>
@@ -43,7 +46,7 @@
   <span class="menu-btn"><i class="fa fa-bars"></i></span>
   <ul class="ts-profile-nav">
     <li class="ts-account">
-      <a href="#"><img src="../resources/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+      <a href="#"><img src="../resources/img/user.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
       <ul>
         <li><a href="myAccount.jsp">My Account</a></li>
         <li><a href="signout.jsp">Logout</a></li>
@@ -95,56 +98,46 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
+                  <th>Name</th>
+                  <th>Priority</th>
+                  <th>IsDone</th>
+                  <th>Type</th>
+                  <th>Start</th>
+                  <th>Deadline</th>
+                  <th>Text</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="info">
-                  <td>3</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="success">
-                  <td>4</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="danger">
-                  <td>5</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="warning">
-                  <td>6</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="active">
-                  <td>7</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
+
+                <!--1 Home 2 Work 3 My = TASKS-->
+                <c:forEach var="i" items="${tasks}" varStatus="stat">
+                  <c:if test="${i.taskType.id == 1}">
+                    <tr class="info">
+                  </c:if>
+
+                  <c:if test="${i.taskType.id == 2}">
+                    <tr class="success">
+                  </c:if>
+
+                  <c:if test="${i.taskType.id == 3}">
+                    <tr class="warning">
+                  </c:if>
+
+                    <td>${i.id}</td>
+                    <td>${i.name}</td>
+                    <td>${i.prioritising}</td>
+                    <td>${i.done}</td>
+                    <td>${i.taskType.name}</td>
+                    <td>${i.dateCreate}</td>
+                    <td>${i.dateDeadLine}</td>
+                    <td>${i.body}</td>
+
+                  </tr>
+                </c:forEach>
                 </tbody>
+
               </table>
+
             </div>
           </div>
 

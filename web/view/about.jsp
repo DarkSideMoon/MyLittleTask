@@ -38,47 +38,7 @@
 </head>
 
 <body>
-<div class="brand clearfix">
-  <a href="dashboard.jsp" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
-  <span class="menu-btn"><i class="fa fa-bars"></i></span>
-  <ul class="ts-profile-nav">
-    <li class="ts-account">
-      <a href="#"><img src="../resources/img/user.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
-      <ul>
-        <li><a href="myAccount.jsp">My Account</a></li>
-        <li><a href="signout.jsp">Logout</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
-
 <div class="ts-main-content">
-  <nav class="ts-sidebar">
-    <ul class="ts-sidebar-menu">
-      <li class="ts-label">Main</li>
-      <li class="open"><a href="dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="#"><i class="fa fa-desktop"></i>My Tasks</a>
-        <ul>
-          <li><a href="allTasks.jsp"> All</a></li>
-          <li><a href="homeTasks.jsp"> Home</a></li>
-          <li><a href="workTasks.jsp"> Work</a></li>
-          <li><a href="myTasks.jsp"> My</a></li>
-          <!--<li><a href="otherTasks.jsp"> Others</a></li>-->
-        </ul>
-      </li>
-      <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
-      <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> SigmaJS Cahrts</a></li> <!-- Charts with the splitting tasks-->
-      <li><a href="blank.jsp"><i class="fa fa-google"></i> Web</a></li>
-      <li><a href="notes.jsp"><i class="fa fa-sticky-note-o"></i> My notes</a></li>
-
-    </ul>
-
-    <div>
-      <blockquote>
-        <p style="color: white;">User in system</p>
-      </blockquote>
-    </div>
-  </nav>
   <div class="content-wrapper">
     <div class="container-fluid">
 

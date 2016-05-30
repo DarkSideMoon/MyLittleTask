@@ -1,11 +1,3 @@
-import com.greenowl.logic.dao.impl.NoteDaoImpl;
-import com.greenowl.model.Note;
-import com.greenowl.model.User;
-import org.junit.Test;
-
-import java.util.Date;
-import java.util.List;
-
 /**
  * Created by acube on 15.05.2016.
  * Package PACKAGE_NAME

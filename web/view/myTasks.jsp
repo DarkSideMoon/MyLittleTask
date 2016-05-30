@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="script" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en" class="no-js">
 
 <head>
@@ -88,63 +91,41 @@
 
           <h2 class="page-title">My tasks</h2>
 
-          <div class="panel panel-warning">
+          <div class="panel panel-primary">
             <div class="panel-heading">Contextual tables</div>
             <div class="panel-body">
               <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
+                  <th>Name</th>
+                  <th>Priority</th>
+                  <th>IsDone</th>
+                  <th>Type</th>
+                  <th>Start</th>
+                  <th>Deadline</th>
+                  <th>Text</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="info">
-                  <td>3</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="success">
-                  <td>4</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="danger">
-                  <td>5</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="warning">
-                  <td>6</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="active">
-                  <td>7</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
+
+                <c:forEach var="i" items="${myTasksList}" varStatus="stat">
+
+                  <tr class="info">
+                    <td>${i.id}</td>
+                    <td>${i.name}</td>
+                    <td>${i.prioritising}</td>
+                    <td>${i.done}</td>
+                    <td>${i.taskType.name}</td>
+                    <td>${i.dateCreate}</td>
+                    <td>${i.dateDeadLine}</td>
+                    <td>${i.body}</td>
+                  </tr>
+                </c:forEach>
                 </tbody>
+
               </table>
+
             </div>
           </div>
 

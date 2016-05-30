@@ -7,7 +7,7 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+          <root url="file://$MODULE_DIR$/web" relative="/" />
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
@@ -18,11 +18,9 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/web/WEB-INF/spring-security.xml</file>
+          <file>file://$MODULE_DIR$</file>
+          <file>file://$MODULE_DIR$/lib</file>
           <file>file://$MODULE_DIR$/web/WEB-INF/dispatcher-servlet.xml</file>
-          <file>file://$MODULE_DIR$/web/WEB-INF/security-config.xml</file>
-          <file>file://$MODULE_DIR$/web/WEB-INF/security-config.xml</file>
-          <file>file://$MODULE_DIR$/web/WEB-INF/tesssss.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -32,7 +30,6 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="MyLittleTask" value="ba8324c4-f517-45c2-86ea-27af72a629c7" />
-          <factory-entry name="WeatherDB" value="ba8324c4-f517-45c2-86ea-27af72a629c7" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
@@ -49,10 +46,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Spring-4.2.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Spring MVC-4.2.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Spring Data JPA-1.3.3" level="project" />
-    <orderEntry type="library" name="Spring Web Services-2.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:5.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" level="project" />
     <orderEntry type="library" name="Maven: dom4j:dom4j:1.6.1" level="project" />
@@ -83,7 +76,6 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:4.1.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" level="project" />
     <orderEntry type="library" name="Maven: javaee:javaee-api:5" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.11" level="project" />

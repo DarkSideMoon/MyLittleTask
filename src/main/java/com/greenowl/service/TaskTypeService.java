@@ -1,6 +1,8 @@
 package com.greenowl.service;
 
 import com.greenowl.logic.dao.impl.GenericDaoImpl;
+import com.greenowl.logic.dao.impl.TaskDaoImpl;
+import com.greenowl.logic.dao.impl.TaskTypeDaoImpl;
 import com.greenowl.model.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,14 +18,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskTypeService {
 
-    //@Autowired NOT find beas
-    private GenericDaoImpl<TaskType> genericDao;
+    @Autowired
+    private TaskTypeDaoImpl taskTypeDao;
 
     public TaskTypeService() {
-        this.genericDao = new GenericDaoImpl<TaskType>(TaskType.class);
+        this.taskTypeDao = new TaskTypeDaoImpl();
     }
 
     public void createNewTaskType(TaskType type) {
-        this.genericDao.create(type);
+        this.taskTypeDao.create(type);
+    }
+
+    public TaskType getTypeByName(String name) {
+        return this.taskTypeDao.getByNameTaskType(name);
     }
 }

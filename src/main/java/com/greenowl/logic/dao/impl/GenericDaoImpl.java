@@ -2,10 +2,11 @@ package com.greenowl.logic.dao.impl;
 
 
 import com.greenowl.logic.dao.JdbcDao;
+import com.greenowl.model.Task;
+import com.greenowl.model.TaskType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -59,5 +60,10 @@ public class GenericDaoImpl<T> implements JdbcDao<T> {
     public List<T> getAllUsers(String queryName) {
         TypedQuery<T> namedQuery = entityManager.createNamedQuery(queryName, typeParameterClass);
         return namedQuery.getResultList();
+    }
+
+    public T executeQuery(String queryName) {
+        TypedQuery<T> namedQuery = entityManager.createNamedQuery(queryName, typeParameterClass);
+        return namedQuery.getSingleResult();
     }
 }

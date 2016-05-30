@@ -1,44 +1,45 @@
 package com.greenowl.logic.dao.impl;
 
 import com.greenowl.logic.dao.JdbcDao;
-import com.greenowl.model.GmailUser;
+import com.greenowl.logic.dao.TaskDao;
+import com.greenowl.model.Task;
+import com.greenowl.model.TaskType;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import java.io.Serializable;
-import java.util.List;
 
 /**
- * Created by acube on 14.05.2016.
+ * Created by acube on 30.05.2016.
+ * Package com.greenowl.logic.dao.impl
+ *
  * @author Pavel Romashchenko (DarkSideMoon)
  * @version 0.0.0.1
- * @application My Little Task
+ * @application MyLittleTask
  */
 @Repository
-@Transactional
-public class GmailUserDaoImpl implements JdbcDao<GmailUser>, Serializable {
+@SessionScoped
+public class TaskTypeDaoImpl implements JdbcDao<TaskType> {
 
-    //@PersistenceContext
     private EntityManager entityManager;
 
-    public GmailUserDaoImpl() {
+    public TaskTypeDaoImpl() {
         entityManager = Persistence.createEntityManagerFactory("MyLittleTask").createEntityManager();
     }
 
-    public void create(GmailUser o) {
+    public void create(TaskType o) {
         entityManager.getTransaction().begin();
         entityManager.persist(o);
         entityManager.getTransaction().commit();
     }
 
-    public GmailUser retrieve(int id) {
-        return entityManager.find(GmailUser.class, (long)id);
+    public TaskType retrieve(int id) {
+        return entityManager.find(TaskType.class, (long)id);
     }
 
-    public void update(GmailUser o) {
+    public void update(TaskType o) {
         entityManager.getTransaction().begin();
         entityManager.merge(o);
         entityManager.getTransaction().commit();
@@ -50,8 +51,9 @@ public class GmailUserDaoImpl implements JdbcDao<GmailUser>, Serializable {
         entityManager.getTransaction().commit();
     }
 
-    public List<GmailUser> getAllUsers() {
-        TypedQuery<GmailUser> namedQuery = entityManager.createNamedQuery("gmailuser.getAll", GmailUser.class);
-        return namedQuery.getResultList();
+    public TaskType getByNameTaskType(String name) {
+        TypedQuery<TaskType> namedQuery = entityManager.createNamedQuery("tasktype.getTypeByName", TaskType.class)
+                .setParameter("name", name);
+        return namedQuery.getSingleResult();
     }
 }

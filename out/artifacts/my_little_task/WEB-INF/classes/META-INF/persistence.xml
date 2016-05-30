@@ -5,7 +5,7 @@
                         http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
 
     <persistence-unit name="MyLittleTask" transaction-type="RESOURCE_LOCAL">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

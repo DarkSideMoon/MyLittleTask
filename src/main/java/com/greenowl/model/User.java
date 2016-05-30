@@ -26,7 +26,7 @@ import javax.persistence.*;
 })
 public class User {
 
-    @Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserID_seq")
     @SequenceGenerator(name = "UserID_seq",
             sequenceName = "user_id_seq",
@@ -47,7 +47,7 @@ public class User {
     @Column(name = "gmailauth")
     public boolean gmailauth;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
     @JoinColumn(name="gmailuser", nullable = true)
     public GmailUser gmailuser;
 

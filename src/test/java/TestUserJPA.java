@@ -1,10 +1,3 @@
-import com.greenowl.logic.dao.impl.UserDaoImpl;
-import com.greenowl.model.SimpleHashPass;
-import com.greenowl.model.User;
-import org.junit.Test;
-
-import java.util.List;
-
 /**
  * Created by acube on 10.05.2016.
  * Package ${PACKAGE_NAME}

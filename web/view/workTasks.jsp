@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: acube
@@ -43,7 +44,7 @@
   <span class="menu-btn"><i class="fa fa-bars"></i></span>
   <ul class="ts-profile-nav">
     <li class="ts-account">
-      <a href="#"><img src="../resources/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+      <a href="#"><img src="../resources/img/user.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
       <ul>
         <li><a href="myAccount.jsp">My Account</a></li>
         <li><a href="signout.jsp">Logout</a></li>
@@ -88,63 +89,41 @@
 
           <h2 class="page-title">Work tasks</h2>
 
-          <div class="panel panel-info">
+          <div class="panel panel-primary">
             <div class="panel-heading">Contextual tables</div>
             <div class="panel-body">
               <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
-                  <th>Column heading</th>
+                  <th>Name</th>
+                  <th>Priority</th>
+                  <th>IsDone</th>
+                  <th>Type</th>
+                  <th>Start</th>
+                  <th>Deadline</th>
+                  <th>Text</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="info">
-                  <td>3</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="success">
-                  <td>4</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="danger">
-                  <td>5</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="warning">
-                  <td>6</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
-                <tr class="active">
-                  <td>7</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                </tr>
+
+                <c:forEach var="i" items="${workTasksList}" varStatus="stat">
+
+                  <tr class="warning">
+                    <td>${i.id}</td>
+                    <td>${i.name}</td>
+                    <td>${i.prioritising}</td>
+                    <td>${i.done}</td>
+                    <td>${i.taskType.name}</td>
+                    <td>${i.dateCreate}</td>
+                    <td>${i.dateDeadLine}</td>
+                    <td>${i.body}</td>
+                  </tr>
+                </c:forEach>
                 </tbody>
+
               </table>
+
             </div>
           </div>
 

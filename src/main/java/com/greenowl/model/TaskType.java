@@ -7,7 +7,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="tasktype")
-@NamedQuery(name = "tasktype.getAll", query = "SELECT t from TaskType t")
+@NamedQueries({
+        @NamedQuery(name = "tasktype.getAll", query = "SELECT t from TaskType t"),
+        @NamedQuery(name = "tasktype.getTypeByName", query = "SELECT w from TaskType w where name = :name")
+})
+
 public class TaskType {
 
     // Fileds

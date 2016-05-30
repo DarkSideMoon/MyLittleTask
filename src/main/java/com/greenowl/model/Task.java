@@ -14,8 +14,8 @@ import java.util.Date;
 @Table(name="task")
 @NamedQueries({
         @NamedQuery(name = "task.getAll", query = "SELECT w from Task w"),
-        @NamedQuery(name = "task.getByPrioritizing", query = "SELECT w from Task w where prioritising = :priority"),
-        @NamedQuery(name = "task.getByTypeId", query = "SELECT w from Task w where taskType = :taskType"),
+        @NamedQuery(name = "task.getByPrioritizing", query = "SELECT w from Task w where prioritising = :priority and user = :user"),
+        @NamedQuery(name = "task.getByTypeId", query = "SELECT w from Task w where taskType = :taskType and user = :user"),
         @NamedQuery(name = "task.getAllInDone", query = "SELECT w from Task w where isDone = true")
 })
 public class Task  {
@@ -51,6 +51,11 @@ public class Task  {
     @OneToOne(optional = false)
     @JoinColumn(name="typeid", unique = true, nullable = false, updatable = false)
     public TaskType taskType;
+
+    //@OneToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name="userid", unique = true, nullable = false, updatable = false)
+    public User user;
 
     // Constructors
     public Task() {}
@@ -117,5 +122,12 @@ public class Task  {
     }
     public void setPrioritising(int prioritising) {
         this.prioritising = prioritising;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 }

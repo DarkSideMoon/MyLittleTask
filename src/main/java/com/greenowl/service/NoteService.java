@@ -2,7 +2,6 @@ package com.greenowl.service;
 
 import com.greenowl.logic.dao.impl.NoteDaoImpl;
 import com.greenowl.model.Note;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

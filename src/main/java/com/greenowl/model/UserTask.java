@@ -4,6 +4,10 @@ import javax.persistence.*;
 
 /**
  * Created by acube on 10.05.2016.
+ * Package ${PACKAGE_NAME}
+ * @author Pavel Romashchenko (DarkSideMoon)
+ * @version 0.0.0.1
+ * @application MyLittleTask2
  */
 @Entity
 @Table(name="user_in_task")
