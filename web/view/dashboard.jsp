@@ -68,11 +68,11 @@
           Others</a></li>-->
         </ul>
       </li>
-      <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
+      <!--<li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
       <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> SigmaJS Cahrts</a></li> <!-- Charts with the splitting tasks-->
-      <li><a href="webEnter.jsp"><i class="fa fa-google"></i> Web</a></li>
-      <li><a href="notes.jsp"><i class="fa fa-sticky-note-o"></i> My notes</a></li>
-      <li><a href="<c:url value="/about" />"><i class="fa fa-github"></i> About</a></li>
+      <li><a href="<c:url value="/web/google" />"><i class="fa fa-google"></i> Web</a></li>
+      <li><a href="<c:url value="/note/my"/> "><i class="fa fa-sticky-note-o"></i> My notes</a></li>
+      <li><a href="<c:url value="/info/about" />"><i class="fa fa-github"></i> About</a></li>
 
     </ul>
 
@@ -149,9 +149,7 @@
                   <div class="row">
                     <div class="col-md-4">
                       <ul class="chart-dot-list">
-                        <li class="a1">date 1</li>
-                        <li class="a2">data 2</li>
-                        <li class="a3">data 3</li>
+                        <li class="a4">All tasks</li>
                       </ul>
                     </div>
                     <div class="col-md-8">
@@ -170,9 +168,9 @@
                   <div class="row">
                     <div class="col-md-4">
                       <ul class="chart-dot-list">
-                        <li class="a1">date 1</li>
-                        <li class="a2">data 2</li>
-                        <li class="a3">data 3</li>
+                        <li class="a1">My tasks</li>
+                        <li class="a2">Work tasks</li>
+                        <li class="a3">Home tasks</li>
                       </ul>
                     </div>
                     <div class="col-md-8">
@@ -188,7 +186,7 @@
 
           <div id="dashReport"></div>
 
-          <c:if test="${importatnTasksList.size() != 0}">
+          <c:if test="${importantTasksList.size() != 0}">
             <div class="alert alert-dismissible alert-warning">
               <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
               <strong>Warning!</strong> You have important tasks
@@ -215,7 +213,7 @@
                     <tbody>
 
                     <!--1 Home 2 Work 3 My = TASKS-->
-                    <c:forEach var="i" items="${importatnTasksList}" varStatus="stat">
+                    <c:forEach var="i" items="${importantTasksList}" varStatus="stat">
                       <c:if test="${i.taskType.id == 1}">
                         <tr class="info">
                       </c:if>
@@ -282,13 +280,46 @@
      multiTooltipTemplate: ,
      });
      */
-    // Pie Chart from doughutData
-    var doctx = document.getElementById("chart-area3").getContext("2d");
-    window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive : true});
 
-    // Dougnut Chart from doughnutData
+    var allTaskData = [
+      {
+        value: ${allTasks},
+        color:"#30a5ff",
+        highlight: "#62b9fb",
+        label: "All tasks"
+      }];
+
+    var taskData = [
+      {
+        value: ${homeTasks},
+        color: "#ffb53e",
+        highlight: "#fac878",
+        label: "Home tasks"
+      },
+      {
+        value: ${workTasks},
+        color: "#1ebfae",
+        highlight: "#3cdfce",
+        label: "Work tasks"
+      },
+      {
+        value: ${myTasks},
+        color: "#f9243f",
+        highlight: "#f6495f",
+        label: "My tasks"
+      }
+
+    ];
+
+
+
+    // Pie Chart from taskData
+    var doctx = document.getElementById("chart-area3").getContext("2d");
+    window.myDoughnut = new Chart(doctx).Pie(allTaskData, {responsive : true});
+
+    // Dougnut Chart from taskData
     var doctx = document.getElementById("chart-area4").getContext("2d");
-    window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive : true});
+    window.myDoughnut = new Chart(doctx).Doughnut(taskData, {responsive : true});
 
   }
 </script>

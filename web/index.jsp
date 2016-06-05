@@ -131,13 +131,8 @@
       <div class="col-md-8 col-md-offset-2">
         <h1>We live in the amazing San Francisco</h1>
         <h3 class="mb">Lorem Ipsum is simply dummy text<br/>of the printing and typesetting industry.</h3>
-        <button class="btn btn-conf btn-clear" onclick="location.href='view/registration.jsp'">Registration</button>
+        <button class="btn btn-conf btn-clear" onclick="location.href='/my_little_task/account/registration'">Registration</button>
         <button class="btn btn-conf btn-clear" onclick="location.href='/my_little_task/account/login'">Sign in</button>
-        <button class="btn btn-conf btn-clear" onclick="location.href='view/dashboard.jsp'">Dashboard</button>
-        <button class="btn btn-conf btn-clear" onclick="location.href='view/notes.jsp'">Notes</button>
-        <button class="btn btn-conf btn-clear" onclick="location.href='view/charts.jsp'">Charts</button>
-        <button class="btn btn-conf btn-clear" onclick="location.href='view/blank.jsp'">Blank</button>
-        <button class="btn btn-conf btn-clear" onclick="location.href=''">Sign out</button>
       </div>
     </div><!--/row-->
   </div><!--/container-->

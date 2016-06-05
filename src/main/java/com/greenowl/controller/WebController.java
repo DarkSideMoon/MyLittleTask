@@ -38,4 +38,11 @@ public class WebController {
             return new ModelAndView("redirect:/error/notfound?place=Google Auth&&traceError=" + ex.getMessage());
         }
     }
+
+    @RequestMapping(value="/google", method = RequestMethod.GET)
+    public ModelAndView googlePage () throws Exception{
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("webEnter");
+        return modelAndView;
+    }
 }

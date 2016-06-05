@@ -1,5 +1,6 @@
 package com.greenowl.controller;
 
+import com.greenowl.form.AllTasksForm;
 import com.greenowl.model.Task;
 import com.greenowl.model.TaskType;
 import com.greenowl.model.User;
@@ -8,6 +9,7 @@ import com.greenowl.service.TaskTypeService;
 import com.greenowl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -131,4 +133,28 @@ public class TaskController {
         }
     }
 
+    @RequestMapping(value = "/updateTasks", method = RequestMethod.POST)
+    public ModelAndView updateAllTasks(@ModelAttribute("tasksForm") AllTasksForm tasksForm) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Task> tasks = tasksForm.getTasks();
+
+        try {
+            if(null != tasks && tasks.size() > 0) {
+                for (Task item : tasks) {
+                    taskService.updateTask(item);
+                }
+            }
+
+            // Load all tasks
+            User user = userService.getUser("123@asd", "12345");
+            List<Task> tasksNew = taskService.getUserTasks(user);
+
+            modelAndView.addObject("tasks", tasksNew);
+            modelAndView.addObject("success", true);
+        } catch (Exception ex) {
+            modelAndView.addObject("success", false);
+        }
+        modelAndView.setViewName("allTasks");
+        return modelAndView;
+    }
 }

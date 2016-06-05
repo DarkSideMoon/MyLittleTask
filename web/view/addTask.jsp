@@ -61,8 +61,7 @@
     <li class="ts-account">
       <a href="#"><img src="../resources/img/user.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
       <ul>
-        <li><a href="<c:url value="" />">My Account</a></li>
-        <li><a href="<c:url value="/account/logout" />">Logout</a></li>
+        <li><a href="<c:url value="/account/my" />">My Account</a></li>
       </ul>
     </li>
   </ul>
@@ -84,20 +83,20 @@
           Others</a></li>-->
         </ul>
       </li>
-      <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
+      <!--<li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
       <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> SigmaJS Cahrts</a></li> <!-- Charts with the splitting tasks-->
-      <li><a href="webEnter.jsp"><i class="fa fa-google"></i> Web</a></li>
+      <li><a href="<c:url value="/web/google" />"><i class="fa fa-google"></i> Web</a></li>
       <li><a href="notes.jsp"><i class="fa fa-sticky-note-o"></i> My notes</a></li>
-      <li><a href="<c:url value="/about" />"><i class="fa fa-github"></i> About</a></li>
+      <li><a href="<c:url value="/info/about" />"><i class="fa fa-github"></i> About</a></li>
 
     </ul>
-
     <div>
       <blockquote>
-        <p style="color: white;" id="userInSystem" name="userInSystem">${userInSystem}</p>
+        <p style="color: white;">User in system</p>
       </blockquote>
     </div>
   </nav>
+
   <div class="content-wrapper">
     <div class="container-fluid">
 

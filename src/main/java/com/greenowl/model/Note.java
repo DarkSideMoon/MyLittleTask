@@ -10,7 +10,8 @@ import java.util.Date;
 @Table(name="note")
 @NamedQueries({
         @NamedQuery(name = "note.getAll", query = "SELECT w from Note w"),
-        @NamedQuery(name = "note.getAchievable", query = "SELECT w from Note w where isArchiavable = true")
+        @NamedQuery(name = "note.getAchievable", query = "SELECT w from Note w"),
+        @NamedQuery(name = "note.getUserNotes", query = "SELECT w from Note w where user = :user")
 })
 
 public class Note {
@@ -25,25 +26,24 @@ public class Note {
     @Column(name = "id")
     public Long Id;
 
-    @Column(name = "header")
-    public String header;
-
     @Column(name = "body")
     public String body;
-
-    @Column(name = "color")
-    public String color;
-
-    @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date date;
-
-    @Column(name = "isarchiavable")
-    public boolean isArchiavable;
 
     @OneToOne(optional = false)
     @JoinColumn(name="userid", unique = true, nullable = false, updatable = false)
     public User user;
+
+    @Transient
+    public String header;
+
+    @Transient
+    public String color;
+
+    @Transient
+    public Date date;
+
+    @Transient
+    public boolean isArchiavable;
 
     // Constructors
     public Note() {}

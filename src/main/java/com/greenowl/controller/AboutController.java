@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @application MyLittleTask
  */
 @Controller
+@RequestMapping("/info")
 public class AboutController {
 
     // Start page

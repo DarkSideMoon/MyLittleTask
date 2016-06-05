@@ -2506,12 +2506,8 @@
     </table>
     <table name="note" schema="public" catalog="my_little_task" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnbm90ZV9pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
-      <column name="header" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="body" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="color" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="isarchiavable" sqlType="bool" precision="1" scale="0" nullable="true" jdbcType="-7"/>
       <column name="userid" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="date" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
       <primary-key name="note_pkey" columns="id"/>
       <foreign-key name="pk_user_id" columns="userid" ref-table="appuser" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>

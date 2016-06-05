@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Created by acube on 18.05.2016.
@@ -106,7 +107,11 @@ public class AccountController {
 
             if (result) {
                 List<Integer> resTasksTypeCounts = taskService.getAllTasksByTypes(user);
-                List<Task> importatnTasksList = taskService.getTasksByPriority(1, user);
+                List<Task> tempTasks = taskService.getTasksByPriority(1, user);
+                List<Task> importatnTasksList = tempTasks
+                        .stream()
+                        .filter(t -> !t.isDone)
+                        .collect(Collectors.toList());
 
                 int temp = resTasksTypeCounts.get(3);
                 int allTasksCount = temp == 0 || user == null ? 0 : temp;
@@ -127,7 +132,7 @@ public class AccountController {
                 view.addObject("homeTasks", homeTasksCount);
                 view.addObject("workTasks", workTasksCount);
                 view.addObject("myTasks", myTasksCount);
-                view.addObject("importatnTasksList", importatnTasksList);
+                view.addObject("importantTasksList", importatnTasksList);
 
 
                 view.setViewName("dashboard");

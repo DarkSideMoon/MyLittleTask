@@ -2,6 +2,7 @@ package com.greenowl.logic.dao.impl;
 
 import com.greenowl.logic.dao.NoteDao;
 import com.greenowl.model.Note;
+import com.greenowl.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.faces.bean.SessionScoped;
@@ -35,6 +36,12 @@ public class NoteDaoImpl implements NoteDao<Note>, Serializable {
 
     public List<Note> getAllNotes() {
         TypedQuery<Note> namedQuery = entityManager.createNamedQuery("note.getAll", Note.class);
+        return namedQuery.getResultList();
+    }
+
+    public List<Note> getUserNotes(User us) {
+        TypedQuery<Note> namedQuery = entityManager.createNamedQuery("note.getUserNotes", Note.class)
+                .setParameter("user", us);
         return namedQuery.getResultList();
     }
 
