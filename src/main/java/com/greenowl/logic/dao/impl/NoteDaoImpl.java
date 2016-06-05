@@ -30,10 +30,6 @@ public class NoteDaoImpl implements NoteDao<Note>, Serializable {
         entityManager = Persistence.createEntityManagerFactory("MyLittleTask").createEntityManager();
     }
 
-    public List<Note> getAllArchiavables() {
-        TypedQuery<Note> namedQuery = entityManager.createNamedQuery("note.getAchievable", Note.class);
-        return namedQuery.getResultList();    }
-
     public List<Note> getAllNotes() {
         TypedQuery<Note> namedQuery = entityManager.createNamedQuery("note.getAll", Note.class);
         return namedQuery.getResultList();

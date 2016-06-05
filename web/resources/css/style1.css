@@ -794,8 +794,21 @@ li {
   padding: 8px 0;
   margin-left: 0.5em;
 }
+.activity_box input[type="reset"]{
+  outline: none;
+  width: 20%;
+  font-size: 1em;
+  color: #fff;
+  background:#C4C4C4;
+  border: none;
+  padding: 8px 0;
+  margin-left: 0.5em;
+}
 .activity_box input[type="submit"]:hover{
   background:#999;
+}
+.activity_box input[type="reset"]:hover{
+  background: #676d99;
 }
 .activity_box{
   background: #fff;
@@ -811,6 +824,9 @@ li {
 .activity_box input[type="submit"] {
   width: 26%;
 }
+.activity_box input[type="reset"] {
+  width: 26%;
+}
 .activity_box {
   min-height: 355px;
 }
@@ -819,10 +835,14 @@ li {
 }
 .activity_box input[type="text"] {
   padding: 6px 8px;
-  font-size: 13px;
+  font-size: 16px;
   width: 69%;
 }
 .activity_box input[type="submit"] {
+  font-size: 14px;
+  padding: 6px 0;
+}
+.activity_box input[type="reset"] {
   font-size: 14px;
   padding: 6px 0;
 }
@@ -847,7 +867,13 @@ li {
   padding-bottom: .5em;
 }
 .activity_box input[type="submit"] {
-  font-size: 13px;
+  font-size: 16px;
+  padding: 4px 0;
+  width: 25%;
+  margin-left: 0em;
+}
+.activity_box input[type="reset"] {
+  font-size: 16px;
   padding: 4px 0;
   width: 25%;
   margin-left: 0em;
@@ -857,7 +883,7 @@ li {
 }
 .activity_box input[type="text"] {
   padding: 3px 8px;
-  font-size: 12px;
+  font-size: 16px;
 }
 .single-bottom ul {
   padding: 0;

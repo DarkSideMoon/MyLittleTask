@@ -1,3 +1,14 @@
+import com.greenowl.logic.dao.impl.NoteDaoImpl;
+import com.greenowl.model.Note;
+import com.greenowl.model.User;
+import com.greenowl.service.NoteService;
+import com.greenowl.service.UserService;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by acube on 15.05.2016.
  * Package PACKAGE_NAME
@@ -9,7 +20,8 @@
  * @application MyLittleTask
  */
 public class TestNoteJPA {
-/*
+
+    /*
     @Test
     public void TestCreateNote() {
         User user = new User();
@@ -33,10 +45,17 @@ public class TestNoteJPA {
         List<Note> allNotes = dao.getAllNotes();
     }
 
+
     @Test
-    public void TestGetAchievable() {
-        NoteDaoImpl dao = new NoteDaoImpl();
-        List<Note> allAchievableNotes = dao.getAllArchiavables();
+    public void TestGeUserNotes() {
+        UserService userService = new UserService();
+        NoteService noteService = new NoteService();
+
+        User user = userService.getUser("123@asd", "12345");
+        List<Note> allNotes = noteService.getUserNotes(user);
+
+        Assert.assertNotNull(allNotes);
     }
-*/
+    */
+
 }

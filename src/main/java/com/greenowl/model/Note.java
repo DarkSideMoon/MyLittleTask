@@ -10,7 +10,6 @@ import java.util.Date;
 @Table(name="note")
 @NamedQueries({
         @NamedQuery(name = "note.getAll", query = "SELECT w from Note w"),
-        @NamedQuery(name = "note.getAchievable", query = "SELECT w from Note w"),
         @NamedQuery(name = "note.getUserNotes", query = "SELECT w from Note w where user = :user")
 })
 
@@ -28,6 +27,9 @@ public class Note {
 
     @Column(name = "body")
     public String body;
+
+    @Column(name = "isdone")
+    public Boolean isDone;
 
     @OneToOne(optional = false)
     @JoinColumn(name="userid", unique = true, nullable = false, updatable = false)
@@ -66,7 +68,7 @@ public class Note {
         return user;
     }
     public void setUser(com.greenowl.model.User user) {
-        user = user;
+        this.user = user;
     }
 
     public String getBody() {
@@ -102,5 +104,12 @@ public class Note {
     }
     public void setIsArchiavable(boolean isArchiavable) {
         this.isArchiavable = isArchiavable;
+    }
+
+    public Boolean getIsDone() {
+        return isDone;
+    }
+    public void setIsDone(Boolean isDone) {
+        this.isDone = isDone;
     }
 }

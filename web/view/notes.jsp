@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html lang="en" class="no-js">
 
 <head>
@@ -39,14 +41,13 @@
 
 <body>
 <div class="brand clearfix">
-  <a href="dashboard.jsp" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
+  <a href="<c:url value="/dashboard" />" class="logo"><img src="../resources/img/logo.jpg" class="img-responsive" alt=""></a>
   <span class="menu-btn"><i class="fa fa-bars"></i></span>
   <ul class="ts-profile-nav">
     <li class="ts-account">
-      <a href="#"><img src="../resources/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+      <a href="#"><img src="../resources/img/user.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
       <ul>
-        <li><a href="myAccount.jsp">My Account</a></li>
-        <li><a href="signout.jsp">Logout</a></li>
+        <li><a href="<c:url value="/account/my" />">My Account</a></li>
       </ul>
     </li>
   </ul>
@@ -56,21 +57,23 @@
   <nav class="ts-sidebar">
     <ul class="ts-sidebar-menu">
       <li class="ts-label">Main</li>
-      <li class="open"><a href="dashboard.jsp"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li class="open"><a href="<c:url value="/main/board" />"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a href="#"><i class="fa fa-desktop"></i>My Tasks</a>
         <ul>
-          <li><a href="allTasks.jsp"> All</a></li>
-          <li><a href="homeTasks.jsp"> Home</a></li>
-          <li><a href="workTasks.jsp"> Work</a></li>
-          <li><a href="myTasks.jsp"> My</a></li>
-          <!--<li><a href="otherTasks.jsp"> Others</a></li>-->
+          <li><a href="<c:url value="/task/addPage" />"> Add task</a></li>
+          <li><a href="<c:url value="/task/all" />"> All</a></li>
+          <li><a href="<c:url value="/task/home" />"> Home</a></li>
+          <li><a href="<c:url value="/task/work" />"> Work</a></li>
+          <li><a href="<c:url value="/task/my" />"> My</a></li>
+          <!--<li><a href="otherTasks.jsp">
+          Others</a></li>-->
         </ul>
       </li>
-      <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
+      <!--<li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> Charts</a></li>
       <li><a href="charts.jsp"><i class="fa fa-pie-chart"></i> SigmaJS Cahrts</a></li> <!-- Charts with the splitting tasks-->
-      <li><a href="webEnter.jsp"><i class="fa fa-google"></i> Web</a></li>
+      <li><a href="<c:url value="/web/google" />"><i class="fa fa-google"></i> Web</a></li>
       <li><a href="notes.jsp"><i class="fa fa-sticky-note-o"></i> My notes</a></li>
-      <li><a href="notes.jsp"><i class="fa fa-github"></i> About</a></li>
+      <li><a href="<c:url value="/info/about" />"><i class="fa fa-github"></i> About</a></li>
 
     </ul>
 
@@ -91,59 +94,49 @@
           <div class="col-md-4 span_8">
             <div class="activity_box activity_box2">
               <h3>todo list</h3>
-              <div class="scrollbar" id="style-2">
-                <div class="activity-row activity-row1">
-                  <div class="single-bottom">
-                    <ul>
-                      <li>
-                        <input type="checkbox"  id="brand" value="">
-                        <label for="brand"><span></span> Sunt in culpa qui officia.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand1" value="">
-                        <label for="brand1"><span></span> Fugiat quo voluptas nulla.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand2" value="">
-                        <label for="brand2"><span></span> Dolorem eum.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand9" value="">
-                        <label for="brand9"><span></span> Pain that produces no resultant.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand8" value="">
-                        <label for="brand8"><span></span> Cupidatat non proident.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand7" value="">
-                        <label for="brand7"><span></span> Praising pain was born.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand3" value="">
-                        <label for="brand3"><span></span> Computer & Electronics</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand4" value="">
-                        <label for="brand4"><span></span> Dolorem ipsum quia.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand5" value="">
-                        <label for="brand5"><span></span> Consequatur aut perferendis.</label>
-                      </li>
-                      <li>
-                        <input type="checkbox"  id="brand6" value="">
-                        <label for="brand6"><span></span> Dolorem ipsum quia.</label>
-                      </li>
+              <form:form method="post" action="" class="form-horizontal">
+                <div class="scrollbar" id="style-2">
+                  <div class="activity-row activity-row1">
+                    <div class="single-bottom">
+                      <ul>
+                        <c:forEach var="i" items="${notes}" varStatus="stat">
+                          <li>
+                            <c:if test="${i.isDone == true}">
+                              <input type="checkbox" id="brand${i.id}" checked="checked"/>
+                            </c:if>
+                            <c:if test="${i.isDone == false}">
+                              <input type="checkbox" id="brand${i.id}"/>
+                            </c:if>
 
-
-                    </ul>
+                            <label for="brand${i.id}"><span></span>${i.body}</label>
+                          </li>
+                        </c:forEach>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <form>
-                <input type="text" value="Enter your text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your text';}" required="">
-                <input type="submit" value="Submit" required=""/>
+                    <input type="reset" value="Reset"/>
+                    <input type="submit" value="Save changes"/>
+              </form:form>
+
+              <form method="post" action="save" class="form-horizontal">
+
+                <c:if test="${success == false}">
+                <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                  <strong>Oh wrong!</strong> Something go bad! Try again later
+                </div>
+                </c:if>
+
+                <c:if test="${success == true}">
+                <div class="alert alert-dismissible alert-success">
+                  <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                  <strong>Well done!</strong> You create new note!
+                </div>
+                </c:if>
+
+                <input type="text" name="note" placeholder="Enter your text" required="">
+                <input type="submit" value="Submit"/>
               </form>
             </div>
             <div class="clearfix"> </div>

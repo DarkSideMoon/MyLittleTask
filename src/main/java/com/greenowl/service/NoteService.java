@@ -27,7 +27,6 @@ public class NoteService {
         noteDao = new NoteDaoImpl();
     }
 
-    @Transactional
     public void addNote(Note note) {
         noteDao.create(note);
     }
@@ -41,20 +40,13 @@ public class NoteService {
         noteDao.update(note);
     }
 
-    @Transactional(readOnly = true)
+
     public List<Note> getAllNotes() {
         return noteDao.getAllNotes();
     }
 
-    @Transactional(readOnly = true)
-    public List<Note> getArchiveNotes() {
-        return noteDao.getAllArchiavables();
-    }
-
-    @Transactional(readOnly = true)
+    //@Transactional(readOnly = true)
     public List<Note> getUserNotes(User user) {
         return noteDao.getUserNotes(user);
     }
-
-
 }

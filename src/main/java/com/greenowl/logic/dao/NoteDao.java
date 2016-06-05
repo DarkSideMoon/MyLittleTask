@@ -9,6 +9,5 @@ import java.util.List;
  */
 public interface NoteDao<U> extends JdbcDao<Note> {
 
-    List<U> getAllArchiavables();
     List<U> getAllNotes();
 }
