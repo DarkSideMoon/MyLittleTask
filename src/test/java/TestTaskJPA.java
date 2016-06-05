@@ -22,17 +22,23 @@ public class TestTaskJPA {
     /*
     @Test
     public void TestCreateTask() {
+        UserService userService = new UserService();
+        User user = userService.getUser("123@asd", "12345");
+
+
+
         TaskType taskType = new TaskType();
-        taskType.Id = (long)1;
+        taskType.Id = (long)3;
 
         Task task = new Task();
         task.name = "Tom Cat task test";
-        task.prioritising = 3;
+        task.prioritising = 5;
         task.isDone = true;
         task.taskType = taskType;
         task.body = "Body of task";
         task.dateDeadLine = new Date();
         task.dateCreate = new Date();
+        task.user = user;
 
         TaskDaoImpl dao = new TaskDaoImpl();
         dao.create(task);
@@ -63,7 +69,7 @@ public class TestTaskJPA {
     @Test
     public void TestGetTaskByPriority() {
         TaskDaoImpl dao = new TaskDaoImpl();
-        List<Task> allDoneTasks = dao.getByPrioritazing(2);
+        //List<Task> allDoneTasks = dao.getByPrioritazing(2, );
     }
 
 
@@ -83,6 +89,8 @@ public class TestTaskJPA {
         Assert.assertEquals(res.get(2).intValue(), 2);
         Assert.assertEquals(res.get(3).intValue(), 7);
     }
+
     */
+
 
 }

@@ -126,7 +126,14 @@
                     <td>${i.id}</td>
                     <td>${i.name}</td>
                     <td>${i.prioritising}</td>
-                    <td>${i.done}</td>
+
+                    <c:if test="${i.done == true}">
+                      <td><input type="checkbox" checked="checked"/></td>
+                    </c:if>
+
+                    <c:if test="${i.done == false}">
+                      <td><input type="checkbox"/></td>
+                    </c:if>
                     <td>${i.taskType.name}</td>
                     <td>${i.dateCreate}</td>
                     <td>${i.dateDeadLine}</td>

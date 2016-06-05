@@ -90,14 +90,17 @@ public class TaskController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addNewTask", method = RequestMethod.POST)
+    @RequestMapping(value = "/addnew", method = RequestMethod.POST)
     public ModelAndView handleAddNewTask(@RequestParam(value = "name") String name,
                                          @RequestParam(value = "priority") Integer priority,
                                          @RequestParam(value = "type") String type,
                                          @RequestParam(value = "body") String text,
                                          @RequestParam(value = "dateStart") Date dateStart,
-                                         @RequestParam(value = "dateEnd") Date dateEnd) throws Exception {
+                                         @RequestParam(value = "dateEnd") Date dateEnd
+                                         ) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("datetime", new Date());
+
         if(name != null && priority != null && type != null
             && text != null && dateStart != null && dateEnd != null) {
             Task task = new Task();
@@ -115,7 +118,9 @@ public class TaskController {
 
             try {
                 taskService.addTask(task);
+                modelAndView.addObject("success", true);
             } catch (Exception ex) {
+                modelAndView.addObject("success", false);
                 return new ModelAndView("redirect:/error/notfound?place=Add New Task Error&&traceError=Error to insert new task to DB!");
             }
 

@@ -43,6 +43,11 @@ public class UserService {
         return (user != null);
     }
 
+    public void updateUser(User user) {
+        UserDaoImpl userDao = new UserDaoImpl();
+        userDao.update(user);
+    }
+
     @Transactional
     public boolean Register(String name, String pass, String email) {
         // Check if User with email exist in DB

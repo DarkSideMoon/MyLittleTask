@@ -1,3 +1,8 @@
+import com.greenowl.model.User;
+import com.greenowl.service.UserService;
+import org.junit.Test;
+import org.springframework.util.Assert;
+
 /**
  * Created by acube on 10.05.2016.
  * Package ${PACKAGE_NAME}
@@ -80,6 +85,14 @@ public class TestUserJPA {
 
         UserDaoImpl userDao = new UserDaoImpl();
         List<User> user = userDao.retrieve("shark005@i.ua");
+    }
+    */
+    /*
+    @Test
+    public void getUserByEmailPass() {
+        UserService userService = new UserService();
+        User user = userService.getUser("123@asd", "12345");
+        Assert.notNull(user);
     }
     */
 

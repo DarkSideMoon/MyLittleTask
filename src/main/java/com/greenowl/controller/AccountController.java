@@ -1,5 +1,7 @@
 package com.greenowl.controller;
 
+import com.greenowl.model.SimpleHashPass;
+import com.greenowl.model.Task;
 import com.greenowl.model.User;
 import com.greenowl.service.TaskService;
 import com.greenowl.service.UserService;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by acube on 18.05.2016.
@@ -51,6 +54,46 @@ public class AccountController {
         return modelAndView;
     }
 
+    @RequestMapping(value="/my", method = RequestMethod.GET)
+    public ModelAndView accountPage () {
+        User user = userService.getUser("123@asd", "12345");
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("name", user.getName());
+        modelAndView.addObject("email", user.getEmail());
+        modelAndView.setViewName("myAccount");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public ModelAndView saveUser (@RequestParam(value = "name") String name,
+                                  @RequestParam(value = "email") String email,
+                                  @RequestParam(value = "passwordOld") String passOld,
+                                  @RequestParam(value = "passwordNew") String passNew) throws Exception{
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getUser("123@asd", "12345");
+        SimpleHashPass hash = new SimpleHashPass(passOld);
+        String passHash = hash.HashPass();
+
+        if(!Objects.equals(user.password, passHash)) {
+            modelAndView.addObject("passNotMatch", true);
+        } else {
+            if(passNew != null) {
+                user.password = hash.HashPass();
+                hash.password = passNew;
+            }
+
+            user.name = name;
+            user.email = email;
+
+            userService.updateUser(user);
+
+            modelAndView.addObject("correct", true);
+        }
+        modelAndView.setViewName("myAccount");
+        return modelAndView;
+    }
+
     // Handler LogIn form
     @RequestMapping(value = "/loginUser", method= RequestMethod.POST)
     public ModelAndView logInForm(@RequestParam(value="email") String email,
@@ -63,6 +106,7 @@ public class AccountController {
 
             if (result) {
                 List<Integer> resTasksTypeCounts = taskService.getAllTasksByTypes(user);
+                List<Task> importatnTasksList = taskService.getTasksByPriority(1, user);
 
                 int temp = resTasksTypeCounts.get(3);
                 int allTasksCount = temp == 0 || user == null ? 0 : temp;
@@ -76,11 +120,14 @@ public class AccountController {
                 temp = resTasksTypeCounts.get(2);
                 int myTasksCount = temp == 0 || user == null ? 0 : temp;
 
+
+
                 view.addObject("userInSystem", user != null ? user.getName() : null);
                 view.addObject("allTasks", allTasksCount);
                 view.addObject("homeTasks", homeTasksCount);
                 view.addObject("workTasks", workTasksCount);
                 view.addObject("myTasks", myTasksCount);
+                view.addObject("importatnTasksList", importatnTasksList);
 
 
                 view.setViewName("dashboard");

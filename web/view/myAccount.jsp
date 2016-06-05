@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html lang="en" class="no-js">
 
 <head>
@@ -91,31 +93,52 @@
           <div class="panel panel-default">
             <div class="panel-heading">Form fields</div>
             <div class="panel-body">
-              <form method="get" class="form-horizontal">
+              <form method="post" class="form-horizontal" action="update">
+
+                <c:if test="${passNotMatch == true}">
+                  <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                    <strong>Oh wrong!</strong> Old password does not match
+                  </div>
+                </c:if>
+
+                <c:if test="${correct == true}">
+                  <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                    <strong>Well done!</strong> You update your user information
+                  </div>
+                </c:if>
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="name" value="${name}">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Password</label>
+                  <label class="col-sm-2 control-label">Password Old</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="passwordOld">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Password New</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" name="passwordNew">
                   </div>
                 </div>
                 <div class="hr-dashed"></div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="text" placeholder="placeholder" class="form-control">
+                    <input type="email" placeholder="placeholder" name="email" class="form-control" value="${email}">
                   </div>
                 </div>
                 <div class="hr-dashed"></div>
 
                 <div class="form-group">
                   <div class="col-sm-8 col-sm-offset-2">
-                    <button class="btn btn-default" type="submit">Cancel</button>
+                    <button class="btn btn-default" type="reset">Reset</button>
                     <button class="btn btn-primary" type="submit">Save changes</button>
                   </div>
                 </div>

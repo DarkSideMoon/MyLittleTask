@@ -52,9 +52,9 @@ public class Task  {
     @JoinColumn(name="typeid", unique = true, nullable = false, updatable = false)
     public TaskType taskType;
 
-    //@OneToOne(optional = false)
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name="userid", unique = true, nullable = false, updatable = false)
+    //@ManyToOne(targetEntity=User.class)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinColumn(name="userid", unique = true, nullable = false, updatable = true)
     public User user;
 
     // Constructors

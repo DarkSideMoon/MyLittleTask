@@ -37,6 +37,20 @@
   <!-- Admin Stye -->
   <link rel="stylesheet" href="../resources/css/style1.css">
 
+  <!--Date time picker-->
+  <link rel="stylesheet" href="../resources/css/jquery-ui.min.css">
+  <script src="../resources/js/jquery.min.js"></script>
+  <script src="../resources/js/jquery-1.11.1.min.js"></script>
+  <script src="../resources/js/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      $("#datetimepickerStart, #datetimepickerEnd").datepicker();
+    });
+
+
+  </script>
+
 </head>
 
 <body>
@@ -96,7 +110,21 @@
             <div class="panel-heading">More input forms</div>
             <div class="panel-body">
 
-              <form:form method="post" action="addNewTask" class="form-horizontal">
+              <form method="post" action="addnew" class="form-horizontal">
+
+                <c:if test="${success == false}">
+                  <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                    <strong>Oh wrong!</strong> Something go bad! Try again later
+                  </div>
+                </c:if>
+
+                <c:if test="${success == true}">
+                  <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                    <strong>Well done!</strong> You create new task!
+                  </div>
+                </c:if>
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Name</label>
@@ -143,7 +171,10 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Date start</label>
                   <div class="col-sm-10">
-                    <input type="datetime-local" name="dateStart" placeholder="Name of task" class="form-control mb">
+                    <input type="text" name="dateStart" id="datetimepickerStart" placeholder="Name of task"
+                           class="form-control mb">
+
+
                   </div>
                 </div>
 
@@ -151,7 +182,8 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Date end</label>
                   <div class="col-sm-10">
-                    <input type="datetime-local" name="dateEnd" placeholder="Name of task" class="form-control mb">
+                    <input type="text" name="dateEnd" id="datetimepickerEnd"
+                           class="form-control mb">
                   </div>
                 </div>
 
@@ -162,7 +194,7 @@
                     <button class="btn btn-primary col-sm-1" type="submit">ADD</button>
                   </div>
                 </div>
-            </form:form>
+            </form>
 
           </div>
         </div>
@@ -178,7 +210,6 @@
 
 
 <!-- Loading Scripts -->
-<script src="../resources/js/jquery.min.js"></script>
 <script src="../resources/js/bootstrap-select.min.js"></script>
 <script src="../resources/js/bootstrap.min.js"></script>
 <script src="../resources/js/jquery.dataTables.min.js"></script>

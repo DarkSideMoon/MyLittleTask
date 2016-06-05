@@ -46,8 +46,7 @@
     <li class="ts-account">
       <a href="#"><img src="../resources/img/user.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
       <ul>
-        <li><a href="<c:url value="" />">My Account</a></li>
-        <li><a href="<c:url value="/account/logout" />">Logout</a></li>
+        <li><a href="<c:url value="/account/my" />">My Account</a></li>
       </ul>
     </li>
   </ul>
@@ -189,56 +188,65 @@
 
           <div id="dashReport"></div>
 
-          <div class="col-md-14">
-            <div class="panel panel-default">
-              <div class="panel-heading">Recent Oreders</div>
-              <div class="panel-body">
-                <table class="table table-hover">
-                  <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    <th>IsDone</th>
-                    <th>Username</th>
-                    <th>IsDone</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><input type="checkbox"/></td>
-                    <td><input type="checkbox"/></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>@mdo</td>
-                    <td><input type="checkbox"/></td>
-                    <td><input type="checkbox"/></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>@mdo</td>
-                    <td><input type="checkbox"/></td>
-                    <td><input type="checkbox"/></td>
-                  </tr>
-                  </tbody>
-                </table>
+          <c:if test="${importatnTasksList.size() != 0}">
+            <div class="alert alert-dismissible alert-warning">
+              <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+              <strong>Warning!</strong> You have important tasks
+            </div>
+
+
+            <div class="col-md-14">
+              <div class="panel panel-default">
+                <div class="panel-heading">Important tasks</div>
+                <div class="panel-body">
+                  <table class="table table-striped table-hover ">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Priority</th>
+                      <th>IsDone</th>
+                      <th>Type</th>
+                      <th>Start</th>
+                      <th>Deadline</th>
+                      <th>Text</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <!--1 Home 2 Work 3 My = TASKS-->
+                    <c:forEach var="i" items="${importatnTasksList}" varStatus="stat">
+                      <c:if test="${i.taskType.id == 1}">
+                        <tr class="info">
+                      </c:if>
+
+                      <c:if test="${i.taskType.id == 2}">
+                        <tr class="success">
+                      </c:if>
+
+                      <c:if test="${i.taskType.id == 3}">
+                        <tr class="warning">
+                      </c:if>
+
+                      <td>${i.id}</td>
+                      <td>${i.name}</td>
+                      <td>${i.prioritising}</td>
+                      <td>${i.done}</td>
+                      <td>${i.taskType.name}</td>
+                      <td>${i.dateCreate}</td>
+                      <td>${i.dateDeadLine}</td>
+                      <td>${i.body}</td>
+
+                      </tr>
+                    </c:forEach>
+                    </tbody>
+
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
 
+          </c:if>
         </div>
       </div>
 
