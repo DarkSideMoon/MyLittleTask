@@ -95,7 +95,9 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Contextual tables</div>
             <div class="panel-body">
-              <form:form method="post" class="form-horizontal" action="updateTasks" modelAttribute="tasksForm">
+
+              <form:form method="post" class="form-horizontal" action="">
+
                 <c:if test="${success == true}">
                   <div class="alert alert-dismissible alert-success">
                     <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
@@ -143,13 +145,8 @@
                     <td>${i.name}</td>
                     <td>${i.prioritising}</td>
 
-                    <c:if test="${i.done == true}">
-                      <td><input type="checkbox" checked="checked"/></td>
-                    </c:if>
+                  <td>  <form:checkbox path="isDone" /></td>
 
-                    <c:if test="${i.done == false}">
-                      <td><input type="checkbox"/></td>
-                    </c:if>
                     <td>${i.taskType.name}</td>
                     <td>${i.dateCreate}</td>
                     <td>${i.dateDeadLine}</td>

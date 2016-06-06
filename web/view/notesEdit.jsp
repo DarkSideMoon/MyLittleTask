@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html lang="en" class="no-js">
 
 <head>
@@ -96,25 +97,53 @@
 
           <h2 class="page-title">My notes</h2>
 
-          <div class="col-md-12 span_8">
+          <div class="col-md-6 span_8">
             <div class="activity_box activity_box2">
               <h3>todo list</h3>
+
                 <div class="scrollbar" id="style-2">
                   <div class="activity-row activity-row1">
                     <div class="single-bottom">
                       <ul name="listNotes">
                         <c:forEach var="i" items="${notes}" varStatus="stat">
-                          <li>
-                            <input style="width: 40px; height: 40px;" type="checkbox" id="brand${i.id}" disabled readonly <c:if test="${i.isDone == true}">checked</c:if>/>
-                            <label type="text" for="brand${i.id}"><span></span>${i.body}</label>
-                          </li>
+                          <form:form method="post" action="${i.id}/actionNote" modelAttribute="note" class="form-horizontal">
+                            <li>
+                              <input type="checkbox" name="isDone" id="brand${i.id}" <c:if test="${i.isDone == true}">checked</c:if>/>
+                              <label name="id" type="text" for="brand${i.id}"><span></span></label>
+
+                              <input name="body" type="text" value="${i.body}" for="brand${i.id}" />
+
+                              <input style="width: 12%" type="submit" name="updateNoteAction" value="update"/>
+                              <input style="width: 12%" type="submit" name="deleteNoteAction" value="delete"/>
+                            </li>
+                          </form:form>
                         </c:forEach>
                       </ul>
                     </div>
                   </div>
+                </div>
 
+              <form method="post" action="save" class="form-horizontal">
+
+                <c:if test="${success == false}">
+                <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                  <strong>Oh wrong!</strong> Something go bad! Try again later
+                </div>
+                </c:if>
+
+                <c:if test="${success == true}">
+                <div class="alert alert-dismissible alert-success">
+                  <button type="button" class="close" data-dismiss="alert"><i class="fa fa-remove"></i></button>
+                  <strong>Well done!</strong> You update note!
+                </div>
+                </c:if>
+
+                <input type="text" name="note" placeholder="Enter your text" required="">
+                <input type="submit" value="Add note"/>
+              </form>
             </div>
-            <div class="clearfix"></div>
+            <div class="clearfix"> </div>
           </div>
 
         </div>

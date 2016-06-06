@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class TaskController {
 
     @Autowired
     private TaskTypeService taskTypeService;
+
+    public TaskController() {}
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView handleGetAllTasks() throws Exception{

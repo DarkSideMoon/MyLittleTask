@@ -35,6 +35,10 @@ public class NoteService {
         noteDao.update(note);
     }
 
+    public void deleteNote(int id) {
+        noteDao.delete(id);
+    }
+
     public void setNoteArchive(Note note) {
         note.isArchiavable = true;
         noteDao.update(note);

@@ -1,14 +1,14 @@
 package com.greenowl.controller;
 
+import com.greenowl.form.AllTasksForm;
+import com.greenowl.form.NoteForm;
 import com.greenowl.model.Note;
 import com.greenowl.model.User;
 import com.greenowl.service.NoteService;
 import com.greenowl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class NoteController {
     public NoteService noteService;
 
     @RequestMapping(value = "/save", method= RequestMethod.POST)
-    public ModelAndView logInForm(@RequestParam(value="note") String body) throws Exception {
+    public ModelAndView addNewNote(@RequestParam(value="note") String body) throws Exception {
         ModelAndView view = new ModelAndView();
         try {
             User user = userService.getUser("123@asd", "12345");
@@ -62,14 +62,67 @@ public class NoteController {
         }
     }
 
+    @RequestMapping(value = "{id}/actionNote", params = "updateNoteAction",method= RequestMethod.POST)
+    public ModelAndView saveChangesNote(@PathVariable("id") Integer id,
+                                        @ModelAttribute("note") Note note) throws Exception {
+        ModelAndView view = new ModelAndView();
+        try {
+            User user = userService.getUser("123@asd", "12345");
+            note.setId((long)id);
+
+            try {
+                noteService.updateNote(note);
+            } catch (Exception ex) {
+                view.addObject("success", false);
+                return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+            }
+
+            return new ModelAndView("redirect:/note/my");
+        }
+        catch (Exception ex) {
+            view.addObject("success", false);
+            return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "{id}/actionNote", params = "deleteNoteAction",method= RequestMethod.POST)
+    public ModelAndView deleteNote(@PathVariable("id") Integer id) throws Exception {
+        ModelAndView view = new ModelAndView();
+        try {
+            try {
+                noteService.deleteNote(id);
+            } catch (Exception ex) {
+                view.addObject("success", false);
+                return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+            }
+
+            return new ModelAndView("redirect:/note/my");
+        }
+        catch (Exception ex) {
+            view.addObject("success", false);
+            return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+        }
+    }
+
     @RequestMapping(value="/my", method = RequestMethod.GET)
-    public ModelAndView googlePage () throws Exception{
+    public ModelAndView notesPage () throws Exception{
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.getUser("123@asd", "12345");
         List<Note> allNotes = noteService.getUserNotes(user);
 
         modelAndView.addObject("notes", allNotes);
         modelAndView.setViewName("notes");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/edit", method = RequestMethod.GET)
+    public ModelAndView notesEditPage () throws Exception{
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getUser("123@asd", "12345");
+        List<Note> allNotes = noteService.getUserNotes(user);
+
+        modelAndView.addObject("notes", allNotes);
+        modelAndView.setViewName("notesEdit");
         return modelAndView;
     }
 
