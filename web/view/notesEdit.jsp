@@ -111,6 +111,9 @@
                               <input type="checkbox" name="isDone" id="brand${i.id}" <c:if test="${i.isDone == true}">checked</c:if>/>
                               <label name="id" type="text" for="brand${i.id}"><span></span></label>
 
+                              <!--Якщо ми використовуємо modelAttribute="note" то всі поля повинні мати імена як в обєктні ймоделі.
+                                  Інакше, просто нічого не буде відбуватись, тому що не буде як такого біндінгу-->
+
                               <input name="body" type="text" value="${i.body}" for="brand${i.id}" />
 
                               <input style="width: 12%" type="submit" name="updateNoteAction" value="update"/>

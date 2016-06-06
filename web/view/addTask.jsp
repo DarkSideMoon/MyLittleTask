@@ -170,7 +170,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Date start</label>
                   <div class="col-sm-10">
-                    <input type="text" name="dateStart" id="datetimepickerStart" placeholder="Name of task"
+                    <input type="text" name="dateStart" id="datetimepickerStart"
                            class="form-control mb">
 
 
@@ -217,31 +217,6 @@
 <script src="../resources/js/fileinput.js"></script>
 <script src="../resources/js/chartData.js"></script>
 <script src="../resources/js/main.js"></script>
-
-<script>
-
-  window.onload = function(){
-
-    // Line chart from swirlData for dashReport
-    //var ctx = document.getElementById("dashReport").getContext("2d");
-    /*
-     window.myLine = new Chart(ctx).Line(swirlData, {
-     responsive: true,
-     scaleShowVerticalLines: false,
-     scaleBeginAtZero : true,
-     multiTooltipTemplate: ,
-     });
-     */
-    // Pie Chart from doughutData
-    var doctx = document.getElementById("chart-area3").getContext("2d");
-    window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive : true});
-
-    // Dougnut Chart from doughnutData
-    var doctx = document.getElementById("chart-area4").getContext("2d");
-    window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive : true});
-
-  }
-</script>
 
 </body>
 

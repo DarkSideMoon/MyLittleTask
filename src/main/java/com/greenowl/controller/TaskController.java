@@ -9,10 +9,7 @@ import com.greenowl.service.TaskTypeService;
 import com.greenowl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -51,6 +48,20 @@ public class TaskController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("allTasks");
         modelAndView.addObject("tasks", tasks);
+        modelAndView.addObject("isEdit", false);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/allEditable", method = RequestMethod.GET)
+    public ModelAndView handleGetAllTasksEdit() throws Exception{
+
+        User user = userService.getUser("123@asd", "12345");
+        List<Task> tasks = taskService.getUserTasks(user);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("allTasks");
+        modelAndView.addObject("tasks", tasks);
+        modelAndView.addObject("isEdit", true);
         return modelAndView;
     }
 
@@ -159,5 +170,66 @@ public class TaskController {
         }
         modelAndView.setViewName("allTasks");
         return modelAndView;
+    }
+
+
+    @RequestMapping(value = "{id}/actionTask", params = "updateTaskAction", method= RequestMethod.POST)
+    public ModelAndView saveChangesNote(@PathVariable("id") Integer id,
+                                        @RequestParam(value = "name") String name,
+                                        @RequestParam(value = "prioritising") Integer priority,
+                                        @RequestParam(value = "isDone", required=false) Boolean isDoneTask,
+                                        @RequestParam(value = "taskType") String type,
+                                        @RequestParam(value = "body") String text,
+                                        @RequestParam(value = "dateCreate") Date dateStart,
+                                        @RequestParam(value = "dateDeadLine") Date dateEnd) throws Exception {
+        ModelAndView view = new ModelAndView();
+        try {
+            TaskType typeTask = taskTypeService.getTypeByName(type);
+            User user = userService.getUser("123@asd", "12345");
+
+            Task task = new Task();
+            task.setId((long)id);
+            task.setName(name);
+            task.setPrioritising(priority);
+            task.setTaskType(typeTask);
+            task.setBody(text);
+            task.setDateCreate(dateStart);
+            task.setDateDeadLine(dateEnd);
+            task.setUser(user);
+
+            boolean done = (isDoneTask == null) ? false : isDoneTask;
+            task.setIsDone(done);
+
+            try {
+                taskService.updateTask(task);
+            } catch (Exception ex) {
+                view.addObject("success", false);
+                return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+            }
+            return new ModelAndView("redirect:/task/all");
+        }
+        catch (Exception ex) {
+            view.addObject("success", false);
+            return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "{id}/actionTask", params = "deleteTaskAction", method= RequestMethod.POST)
+    public ModelAndView deleteNote(@PathVariable("id") Integer id) throws Exception {
+        ModelAndView view = new ModelAndView();
+        try {
+            try {
+                taskService.deleteTask(id);
+            } catch (Exception ex) {
+                view.addObject("success", false);
+                return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+            }
+
+            return new ModelAndView("redirect:/task/all");
+        }
+        catch (Exception ex) {
+            view.addObject("success", false);
+            return new ModelAndView("redirect:/error/notfound?place=Note Control&&traceError=" + ex.getMessage());
+        }
     }
 }
