@@ -18,12 +18,4 @@ public class HomeController   {
 
         return model;
     }
-
-    // Dashboard
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView handleRequestDashboard(ModelAndView modelView) throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dashboard");
-        return modelAndView;
-    }
 }

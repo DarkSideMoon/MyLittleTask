@@ -1,5 +1,6 @@
 package com.greenowl.controller;
 
+import com.greenowl.config.WebSecurity;
 import com.greenowl.model.SimpleHashPass;
 import com.greenowl.model.Task;
 import com.greenowl.model.User;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -39,6 +41,7 @@ public class AccountController {
     @Autowired
     private TaskService taskService;
 
+
     // Retrun login page
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView handleRequestLogin(ModelAndView modelView) throws Exception{
@@ -56,8 +59,12 @@ public class AccountController {
     }
 
     @RequestMapping(value="/my", method = RequestMethod.GET)
-    public ModelAndView accountPage () {
-        User user = userService.getUser("123@asd", "12345");
+    public ModelAndView accountPage (HttpServletRequest request) {
+        User user = WebSecurity.getCurrentUser();
+
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("name", user.getName());
@@ -72,7 +79,9 @@ public class AccountController {
                                   @RequestParam(value = "passwordOld") String passOld,
                                   @RequestParam(value = "passwordNew") String passNew) throws Exception{
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getUser("123@asd", "12345");
+
+        User user = WebSecurity.getCurrentUser();
+
         SimpleHashPass hash = new SimpleHashPass(passOld);
         String passHash = hash.HashPass();
 
@@ -98,12 +107,16 @@ public class AccountController {
     // Handler LogIn form
     @RequestMapping(value = "/loginUser", method= RequestMethod.POST)
     public ModelAndView logInForm(@RequestParam(value="email") String email,
-                              @RequestParam(value="pass") String pass) throws Exception {
+                              @RequestParam(value="pass") String pass, HttpServletRequest request) throws Exception {
         try {
             ModelAndView view = new ModelAndView();
             userService = new UserService();
             boolean result = userService.LogIn(email, pass);
             User user = userService.getUser(email, pass);
+
+            WebSecurity.setCookie(new Cookie("USER", user.getPassword()));
+            WebSecurity.setCurrentUser(user);
+            WebSecurity.setSession(request.getSession());
 
             if (result) {
                 List<Integer> resTasksTypeCounts = taskService.getAllTasksByTypes(user);
@@ -124,7 +137,6 @@ public class AccountController {
 
                 temp = resTasksTypeCounts.get(2);
                 int myTasksCount = temp == 0 || user == null ? 0 : temp;
-
 
 
                 view.addObject("userInSystem", user != null ? user.getName() : null);
@@ -171,15 +183,9 @@ public class AccountController {
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        ModelAndView modelAndView = new ModelAndView();
-
-        modelAndView.addObject("errorIn", "403 Access denied!");
-        modelAndView.addObject("stackTrace", "You are not authorized to access this page");
-        modelAndView.setViewName("error");
-        return modelAndView;
+        WebSecurity.resetTransaction();
+        ModelAndView model = new ModelAndView();
+        model.setViewName("../index");
+        return model;
     }
 }

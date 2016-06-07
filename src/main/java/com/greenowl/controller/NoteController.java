@@ -1,5 +1,6 @@
 package com.greenowl.controller;
 
+import com.greenowl.config.WebSecurity;
 import com.greenowl.form.AllTasksForm;
 import com.greenowl.form.NoteForm;
 import com.greenowl.model.Note;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -36,7 +38,7 @@ public class NoteController {
     public ModelAndView addNewNote(@RequestParam(value="note") String body) throws Exception {
         ModelAndView view = new ModelAndView();
         try {
-            User user = userService.getUser("123@asd", "12345");
+            User user = WebSecurity.getCurrentUser();
 
             Note note = new Note();
             note.setUser(user);
@@ -67,7 +69,7 @@ public class NoteController {
                                         @ModelAttribute("note") Note note) throws Exception {
         ModelAndView view = new ModelAndView();
         try {
-            User user = userService.getUser("123@asd", "12345");
+            User user = WebSecurity.getCurrentUser();
             note.setId((long)id);
 
             try {
@@ -105,9 +107,14 @@ public class NoteController {
     }
 
     @RequestMapping(value="/my", method = RequestMethod.GET)
-    public ModelAndView notesPage () throws Exception{
+    public ModelAndView notesPage (HttpServletRequest request) throws Exception{
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getUser("123@asd", "12345");
+
+        User user = WebSecurity.getCurrentUser();
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         List<Note> allNotes = noteService.getUserNotes(user);
 
         modelAndView.addObject("notes", allNotes);
@@ -116,9 +123,14 @@ public class NoteController {
     }
 
     @RequestMapping(value="/edit", method = RequestMethod.GET)
-    public ModelAndView notesEditPage () throws Exception{
+    public ModelAndView notesEditPage (HttpServletRequest request) throws Exception{
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getUser("123@asd", "12345");
+
+        User user = WebSecurity.getCurrentUser();
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         List<Note> allNotes = noteService.getUserNotes(user);
 
         modelAndView.addObject("notes", allNotes);

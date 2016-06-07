@@ -1,5 +1,6 @@
 package com.greenowl.controller;
 
+import com.greenowl.config.WebSecurity;
 import com.greenowl.form.AllTasksForm;
 import com.greenowl.model.Task;
 import com.greenowl.model.TaskType;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -40,9 +42,13 @@ public class TaskController {
     public TaskController() {}
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ModelAndView handleGetAllTasks() throws Exception{
+    public ModelAndView handleGetAllTasks(HttpServletRequest request) throws Exception{
 
-        User user = userService.getUser("123@asd", "12345");
+        User user = WebSecurity.getCurrentUser();
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         List<Task> tasks = taskService.getUserTasks(user);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -53,9 +59,13 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/allEditable", method = RequestMethod.GET)
-    public ModelAndView handleGetAllTasksEdit() throws Exception{
+    public ModelAndView handleGetAllTasksEdit(HttpServletRequest request) throws Exception{
 
-        User user = userService.getUser("123@asd", "12345");
+        User user = WebSecurity.getCurrentUser();
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         List<Task> tasks = taskService.getUserTasks(user);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -66,9 +76,13 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/my", method = RequestMethod.GET)
-    public ModelAndView handleGetMyTasks(ModelAndView modelView) throws Exception {
+    public ModelAndView handleGetMyTasks(HttpServletRequest request) throws Exception {
 
-        User user = userService.getUser("123@asd", "12345");
+        User user = WebSecurity.getCurrentUser();
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         List<Task> myTasksList = taskService.getTasksByType(3, user);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -78,8 +92,13 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/work", method = RequestMethod.GET)
-    public ModelAndView handleGetWorkTasks(ModelAndView modelView) throws Exception{
-        User user = userService.getUser("123@asd", "12345");
+    public ModelAndView handleGetWorkTasks(HttpServletRequest request) throws Exception{
+
+        User user = WebSecurity.getCurrentUser();
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         List<Task> workTasksList = taskService.getTasksByType(2, user);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -89,8 +108,12 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView handleGetHomeTasks(ModelAndView modelView) throws Exception {
-        User user = userService.getUser("123@asd", "12345");
+    public ModelAndView handleGetHomeTasks(HttpServletRequest request) throws Exception {
+        User user = WebSecurity.getCurrentUser();
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         List<Task> homeTasksList = taskService.getTasksByType(1, user);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -100,7 +123,12 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/addPage", method = RequestMethod.GET)
-    public ModelAndView handleGetAddPage() throws Exception {
+    public ModelAndView handleGetAddPage(HttpServletRequest request) throws Exception {
+
+        Boolean isTransaction = WebSecurity.checkTransaction(request.getSession().getId());
+        if(!isTransaction)
+            return new ModelAndView("redirect:/error/notfound?place=HTTP Status 403&&traceError=Access is denied!");
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addTask");
         return modelAndView;
@@ -121,7 +149,7 @@ public class TaskController {
             && text != null && dateStart != null && dateEnd != null) {
             Task task = new Task();
             TaskType typeTask = taskTypeService.getTypeByName(type);
-            User user = userService.getUser("123@asd", "12345");
+            User user = WebSecurity.getCurrentUser();
 
             task.setName(name);
             task.setPrioritising(priority);
@@ -160,7 +188,7 @@ public class TaskController {
             }
 
             // Load all tasks
-            User user = userService.getUser("123@asd", "12345");
+            User user = WebSecurity.getCurrentUser();
             List<Task> tasksNew = taskService.getUserTasks(user);
 
             modelAndView.addObject("tasks", tasksNew);
@@ -185,7 +213,7 @@ public class TaskController {
         ModelAndView view = new ModelAndView();
         try {
             TaskType typeTask = taskTypeService.getTypeByName(type);
-            User user = userService.getUser("123@asd", "12345");
+            User user = WebSecurity.getCurrentUser();
 
             Task task = new Task();
             task.setId((long)id);

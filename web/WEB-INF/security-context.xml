@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+
+       <http auto-config="true">
+              <intercept-url pattern="/" access="permitAll"/>
+              <intercept-url pattern="/my_little_task/" access="permitAll"/>
+              <intercept-url pattern="/my_little_task/about" access="hasRole('ADMIN')"/>
+              <intercept-url pattern="/dashboard" access="hasRole('ADMIN')"/>
+              <intercept-url pattern="/my_little_task/dashboard" access="hasRole('ADMIN')"/>
+
+              <intercept-url pattern="/mymdb/admin**" access="hasRole('ADMIN')" />
+              <intercept-url pattern="/mymdb/user**" access="hasRole('USER')" />
+              <intercept-url pattern="/mymdb/movies/add" access="hasRole('ADMIN')"/>
+              <intercept-url pattern="/mymdb/media/upload" access="hasRole('ADMIN')"/>
+              <intercept-url pattern="/mymdb/people/add" access="hasRole('ADMIN')"/>
+              <form-login  login-page="/mymdb/login"
+                           login-processing-url="/j_spring_security_check"
+                           username-parameter="username"
+                           password-parameter="password"
+                           authentication-failure-url="/error"/>
+              <csrf disabled="true"/>
+       </http>
+
+       <authentication-manager>
+              <authentication-provider>
+                     <user-service>
+                            <user name="admin" password="admin" authorities="ROLE_ADMIN" />
+                            <user name="user" password="user" authorities="ROLE_USER" />
+                     </user-service>
+              </authentication-provider>
+       </authentication-manager>
+
+</beans:beans>

@@ -34,8 +34,10 @@ public class TaskDaoImpl implements TaskDao<Task>, Serializable {
     }
 
     public void create(Task o) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(o);
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
+        entityManager.merge(o);
         entityManager.getTransaction().commit();
     }
 
@@ -44,13 +46,17 @@ public class TaskDaoImpl implements TaskDao<Task>, Serializable {
     }
 
     public void update(Task o) {
-        entityManager.getTransaction().begin();
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         entityManager.merge(o);
         entityManager.getTransaction().commit();
     }
 
     public void delete(int id) {
-        entityManager.getTransaction().begin();
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         entityManager.remove(this.retrieve(id));
         entityManager.getTransaction().commit();
     }
