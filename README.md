@@ -20,4 +20,9 @@ Will coming soon
  * `JPA` - hibernate
  * `Web` - spring framework
 
+######Overview: 
+I couldn't add spring security technology thus i wrote my own web security. I know that is very bad example of code, but i tried different ways to solve it - nothing didn't help me. This simple web app is overview of the work of technologies such as wrote in [Technologies](https://github.com/DarkSideMoon/MyLittleTask#technologies), and i got useful knowledge in java web applications.
+Thanks for the review of web application
+For more details write to me: :mailbox: 16blackwood16@gmail.com
+
 **Author:** Romashchenko Pavel 
