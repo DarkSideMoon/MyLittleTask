@@ -131,8 +131,8 @@
       <div class="col-md-8 col-md-offset-2">
         <h1>We live in the amazing San Francisco</h1>
         <h3 class="mb">Lorem Ipsum is simply dummy text<br/>of the printing and typesetting industry.</h3>
-        <button class="btn btn-conf btn-clear" onclick="location.href='/my_little_task/account/registration'">Registration</button>
-        <button class="btn btn-conf btn-clear" onclick="location.href='/my_little_task/account/login'">Sign in</button>
+        <button class="btn btn-conf btn-clear" onclick="location.href='/MyLittleTask/account/registration'">Registration</button>
+        <button class="btn btn-conf btn-clear" onclick="location.href='/MyLittleTask/account/login'">Sign in</button>
       </div>
     </div><!--/row-->
   </div><!--/container-->

@@ -1,5 +1,7 @@
 package com.greenowl.controller;
 
+import com.greenowl.config.WebSecurity;
+import com.greenowl.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +26,8 @@ public class AboutController {
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public ModelAndView handleRequestStart(HttpServletRequest request) throws Exception {
         ModelAndView model = new ModelAndView();
+        User user = WebSecurity.getCurrentUser();
+        model.addObject("userInSystem", user != null ? user.getName() : null);
         model.setViewName("about");
 
         return model;

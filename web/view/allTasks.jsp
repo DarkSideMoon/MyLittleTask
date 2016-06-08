@@ -122,7 +122,7 @@
 
     <div>
       <blockquote>
-        <p style="color: white;">User in system</p>
+        <p style="color: white;" id="name">${userInSystem}</p>
       </blockquote>
     </div>
   </nav>

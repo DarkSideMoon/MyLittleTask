@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class TestTaskTypeJPA {
 
-
+/*
     @Test
     public void TestCreateTaskType() {
         TaskType taskType = new TaskType();
@@ -28,4 +28,5 @@ public class TestTaskTypeJPA {
         TaskTypeService service = new TaskTypeService();
         TaskType type = service.getTypeByName("Home");
     }
+    */
 }

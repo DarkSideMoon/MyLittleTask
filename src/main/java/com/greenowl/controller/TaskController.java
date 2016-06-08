@@ -52,9 +52,10 @@ public class TaskController {
         List<Task> tasks = taskService.getUserTasks(user);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("allTasks");
         modelAndView.addObject("tasks", tasks);
         modelAndView.addObject("isEdit", false);
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
+        modelAndView.setViewName("allTasks");
         return modelAndView;
     }
 
@@ -72,6 +73,7 @@ public class TaskController {
         modelAndView.setViewName("allTasks");
         modelAndView.addObject("tasks", tasks);
         modelAndView.addObject("isEdit", true);
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
         return modelAndView;
     }
 
@@ -88,6 +90,7 @@ public class TaskController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("myTasks");
         modelAndView.addObject("myTasksList", myTasksList);
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
         return modelAndView;
     }
 
@@ -104,6 +107,7 @@ public class TaskController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("workTasks");
         modelAndView.addObject("workTasksList", workTasksList);
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
         return modelAndView;
     }
 
@@ -119,6 +123,7 @@ public class TaskController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("homeTasks");
         modelAndView.addObject("homeTasksList", homeTasksList);
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
         return modelAndView;
     }
 
@@ -131,6 +136,8 @@ public class TaskController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addTask");
+        User user = WebSecurity.getCurrentUser();
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
         return modelAndView;
     }
 

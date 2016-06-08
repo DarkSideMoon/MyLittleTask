@@ -119,6 +119,7 @@ public class NoteController {
 
         modelAndView.addObject("notes", allNotes);
         modelAndView.setViewName("notes");
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
         return modelAndView;
     }
 
@@ -135,6 +136,7 @@ public class NoteController {
 
         modelAndView.addObject("notes", allNotes);
         modelAndView.setViewName("notesEdit");
+        modelAndView.addObject("userInSystem", user != null ? user.getName() : null);
         return modelAndView;
     }
 

@@ -69,6 +69,7 @@ public class AccountController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("name", user.getName());
         modelAndView.addObject("email", user.getEmail());
+        modelAndView.addObject("userInSystem",user.getName());
         modelAndView.setViewName("myAccount");
         return modelAndView;
     }
@@ -181,11 +182,11 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    @RequestMapping(value="/logout", method = RequestMethod.POST)
     public ModelAndView logoutPage (HttpServletRequest request, HttpServletResponse response) {
         WebSecurity.resetTransaction();
         ModelAndView model = new ModelAndView();
-        model.setViewName("../index");
+        model.setViewName("signout");
         return model;
     }
 }

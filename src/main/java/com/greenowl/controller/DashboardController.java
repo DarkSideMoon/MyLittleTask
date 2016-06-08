@@ -66,7 +66,7 @@ public class DashboardController {
             view.addObject("workTasks", workTasksCount);
             view.addObject("myTasks", myTasksCount);
             view.addObject("importantTasksList", importatnTasksList);
-
+        view.addObject("userInSystem", user != null ? user.getName() : null);
 
         view.setViewName("dashboard");
         return view;

@@ -92,7 +92,7 @@
     </ul>
     <div>
       <blockquote>
-        <p style="color: white;">User in system</p>
+        <p style="color: white;" id="userInSystem" name="userInSystem">${userInSystem}</p>
       </blockquote>
     </div>
   </nav>

@@ -79,7 +79,7 @@
 
     <div>
       <blockquote>
-        <p style="color: white;">User in system</p>
+        <p style="color: white;" id="userInSystem" name="userInSystem">${userInSystem}</p>
       </blockquote>
     </div>
   </nav>
@@ -143,7 +143,10 @@
                     <button class="btn btn-primary" type="submit">Save changes</button>
                   </div>
                 </div>
+              </form>
 
+              <form method="post" class="form-horizontal" action="logout">
+                <button class="btn btn-default" type="submit">Logout</button>
               </form>
 
             </div>
